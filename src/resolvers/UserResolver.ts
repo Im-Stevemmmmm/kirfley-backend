@@ -10,6 +10,11 @@ export default class GameResolver {
     return await UserModel.find().exec();
   }
 
+  @Query(() => User)
+  async getUserByEmail(@Arg('email') email: string): Promise<User | null> {
+    return await UserModel.findOne({ email }).exec();
+  }
+
   @Mutation(() => User!)
   async registerUser(
     @Arg('email') email: string,
