@@ -7,16 +7,10 @@ import { buildSchema } from 'type-graphql';
 import UserResolver from './resolvers/UserResolver';
 
 const main = async () => {
-  mongoose.connect(
+  await mongoose.connect(
     'mongodb+srv://EstebanGarcia:e3ddXRsxYxhdap4@maincluster.2qdh1.mongodb.net/test?retryWrites=true&w=majority',
-    { useNewUrlParser: true, useUnifiedTopology: true, dbName: 'userdata' }
+    { useNewUrlParser: true, useUnifiedTopology: true }
   );
-
-  const database = mongoose.connection;
-  database.on('error', console.error.bind(console, 'Connection error:'));
-  database.once('open', function () {
-    console.log('Connected successfuly to the database');
-  });
 
   const app = express();
   app.use(cors());
