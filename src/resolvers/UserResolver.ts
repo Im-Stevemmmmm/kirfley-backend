@@ -1,31 +1,79 @@
+import bcrypt from 'bcrypt';
 import { Types } from 'mongoose';
 import { Arg, Mutation, Query, Resolver } from 'type-graphql';
-import { User, UserModel } from '../entities/User';
-import bcrypt from 'bcrypt';
+import { UserModel, UserResponse } from '../entities/User';
+import { UserInput } from './../entities/User';
 
 @Resolver()
-export default class GameResolver {
-  @Query(() => [User])
-  async users(): Promise<User[]> {
-    return await UserModel.find().exec();
+export default class UserResolver {
+  @Query(() => UserResponse!)
+  async login(@Arg('options') userInput: UserInput): Promise<UserResponse> {
+    const user = await UserModel.findOne({ email: userInput.email }).exec();
+
+    if (!user) {
+      return {
+        successful: false,
+        error: {
+          target: 'email',
+          message: 'User does not exist.',
+        },
+      };
+    }
+
+    const isAuthenticated = await bcrypt.compare(
+      userInput.password,
+      user.password!
+    );
+
+    return {
+      successful: isAuthenticated,
+      error: isAuthenticated
+        ? undefined
+        : {
+            target: 'password',
+            message: 'Incorrect password.',
+          },
+    };
   }
 
-  @Query(() => User)
-  async getUserByEmail(@Arg('email') email: string): Promise<User | null> {
-    return await UserModel.findOne({ email }).exec();
-  }
-
-  @Mutation(() => User!)
+  @Mutation(() => UserResponse!)
   async registerUser(
-    @Arg('email') email: string,
-    @Arg('password') password: string
-  ): Promise<User> {
-    const hash = await bcrypt.hash(password, 16);
+    @Arg('options') userInput: UserInput
+  ): Promise<UserResponse> {
+    const user = await UserModel.findOne({ email: userInput.email }).exec();
 
-    return await UserModel.create({
-      _id: Types.ObjectId(),
-      email: email,
-      password: hash,
-    });
+    if (user)
+      return {
+        user: user,
+        error: {
+          target: 'email',
+          message: 'Email is already registered.',
+        },
+      };
+
+    const saltedHash = await bcrypt.hash(userInput.password, 16);
+
+    return {
+      user: await UserModel.create({
+        _id: Types.ObjectId(),
+        email: userInput.email,
+        password: saltedHash,
+      }),
+    };
+  }
+
+  @Mutation(() => UserResponse!)
+  async deleteUser(
+    @Arg('options') userInput: UserInput
+  ): Promise<UserResponse | undefined> {
+    const user = await UserModel.findOne({ email: userInput.email }).exec();
+    if (!user)
+      return { successful: false, error: { message: 'User does not exist.' } };
+
+    await user.deleteOne();
+
+    return {
+      successful: true,
+    };
   }
 }
