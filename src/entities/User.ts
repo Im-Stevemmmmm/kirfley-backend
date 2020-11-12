@@ -1,11 +1,12 @@
-import { prop } from '@typegoose/typegoose';
+import { getModelForClass, prop } from '@typegoose/typegoose';
+import { connection } from 'mongoose';
 import { Field, ObjectType } from 'type-graphql';
 
 @ObjectType()
-export default class User {
+export class User {
   @prop()
   @Field()
-  id?: string;
+  _id?: string;
 
   @prop()
   @Field()
@@ -15,3 +16,7 @@ export default class User {
   @Field()
   password?: string;
 }
+
+export const UserModel = getModelForClass(User, {
+  existingConnection: connection.useDb('userdata'),
+});
