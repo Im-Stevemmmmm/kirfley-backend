@@ -1,28 +1,26 @@
-import { getModelForClass } from '@typegoose/typegoose';
-import { Query, Resolver } from 'type-graphql';
-import User from '../entities/User';
+import { Types } from 'mongoose';
+import { Arg, Mutation, Query, Resolver } from 'type-graphql';
+import { User, UserModel } from '../entities/User';
+import bcrypt from 'bcrypt';
 
 @Resolver()
 export default class GameResolver {
   @Query(() => [User])
   async users(): Promise<User[]> {
-    const UserModel = getModelForClass(User);
-
-    return UserModel.find().exec();
+    return await UserModel.find().exec();
   }
 
-  // @Mutation(() => Game!)
-  // async addGame(
-  //   @Arg('name') name: string,
-  //   @Arg('description') description: string,
-  //   @Arg('year') year: string
-  // ): Promise<Game> {
-  //   const game = Game.create({
-  //     name,
-  //     description,
-  //     year,
-  //   });
+  @Mutation(() => User!)
+  async registerUser(
+    @Arg('email') email: string,
+    @Arg('password') password: string
+  ): Promise<User> {
+    const hash = await bcrypt.hash(password, 16);
 
-  //   return await game.save();
-  // }
+    return await UserModel.create({
+      _id: Types.ObjectId(),
+      email: email,
+      password: hash,
+    });
+  }
 }
