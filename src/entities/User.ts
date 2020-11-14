@@ -1,5 +1,5 @@
 import { getModelForClass, prop } from '@typegoose/typegoose';
-import { IsEmail, Length, Matches } from 'class-validator';
+import { IsEmail, Length } from 'class-validator';
 import { connection } from 'mongoose';
 import { Field, InputType, ObjectType } from 'type-graphql';
 
@@ -46,8 +46,7 @@ export class UserInput {
   email: string;
 
   @Field({ nullable: true })
-  @Length(6, 26)
-  @Matches(/^(?=.*\d{2})(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{6,}$/)
+  @Length(4, 26)
   password?: string;
 }
 
