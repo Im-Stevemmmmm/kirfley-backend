@@ -76,4 +76,11 @@ export default class UserResolver {
       successful: true,
     };
   }
+
+  @Query(() => UserResponse!)
+  async forgotPassword(): Promise<UserResponse> {
+    return {
+      successful: true,
+    };
+  }
 }
