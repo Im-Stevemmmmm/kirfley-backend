@@ -1,5 +1,4 @@
 import { getModelForClass, prop } from '@typegoose/typegoose';
-import { IsEmail, Length } from 'class-validator';
 import { connection } from 'mongoose';
 import { Field, InputType, ObjectType } from 'type-graphql';
 
@@ -8,6 +7,10 @@ export class User {
   @prop()
   @Field()
   _id?: string;
+
+  @prop()
+  @Field()
+  username?: string;
 
   @prop()
   @Field()
@@ -29,7 +32,7 @@ class Error {
 
 @ObjectType()
 export class UserResponse {
-  @Field()
+  @Field(() => User, { nullable: true })
   user?: User;
 
   @Field({ nullable: true })
@@ -41,12 +44,13 @@ export class UserResponse {
 
 @InputType()
 export class UserInput {
-  @Field()
-  @IsEmail()
-  email: string;
+  @Field({ nullable: true })
+  username?: string;
 
   @Field({ nullable: true })
-  @Length(4, 26)
+  email?: string;
+
+  @Field({ nullable: true })
   password?: string;
 }
 
