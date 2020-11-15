@@ -1,8 +1,8 @@
 import bcrypt from 'bcrypt';
 import { Types } from 'mongoose';
 import { Arg, Mutation, Query, Resolver } from 'type-graphql';
-import { UserModel, UserResponse } from '../entities/User';
-import { UserInput } from './../entities/User';
+import { UserModel, UserResponse } from '../entities/user';
+import { UserInput } from '../entities/user';
 
 @Resolver()
 export default class UserResolver {
@@ -26,6 +26,7 @@ export default class UserResolver {
     );
 
     return {
+      user,
       successful: isAuthenticated,
       error: isAuthenticated
         ? undefined
@@ -33,6 +34,18 @@ export default class UserResolver {
             target: 'password',
             message: 'Incorrect password.',
           },
+    };
+  }
+
+  @Query(() => UserResponse!)
+  async checkFieldAvailability(
+    @Arg('field') field: string,
+    @Arg('value') value: string
+  ): Promise<UserResponse> {
+    const user = await UserModel.findOne({ [field]: value }).exec();
+
+    return {
+      successful: user ? false : true,
     };
   }
 
@@ -44,9 +57,9 @@ export default class UserResolver {
 
     if (user)
       return {
-        user: user,
+        user,
+        successful: false,
         error: {
-          target: 'email',
           message: 'Email is already registered.',
         },
       };
@@ -56,9 +69,11 @@ export default class UserResolver {
     return {
       user: await UserModel.create({
         _id: Types.ObjectId(),
+        username: userInput.username,
         email: userInput.email,
         password: saltedHash,
       }),
+      successful: true,
     };
   }
 
@@ -77,7 +92,7 @@ export default class UserResolver {
     };
   }
 
-  @Query(() => UserResponse!)
+  @Mutation(() => UserResponse!)
   async forgotPassword(): Promise<UserResponse> {
     return {
       successful: true,
