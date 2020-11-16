@@ -5,10 +5,13 @@ import mongoose from 'mongoose';
 import 'reflect-metadata';
 import { buildSchema } from 'type-graphql';
 import UserResolver from './resolvers/user-resolver';
+import dotenv from 'dotenv';
 
 const main = async () => {
+  dotenv.config();
+
   await mongoose.connect(
-    'mongodb+srv://EstebanGarcia:e3ddXRsxYxhdap4@maincluster.2qdh1.mongodb.net/test?retryWrites=true&w=majority',
+    `mongodb+srv://${process.env.DB_USERNAME}:${process.env.DB_PASSWORD}@${process.env.DB_CLUSTER}.2qdh1.mongodb.net/test?retryWrites=true&w=majority`,
     { useNewUrlParser: true, useUnifiedTopology: true }
   );
 
