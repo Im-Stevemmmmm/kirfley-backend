@@ -6,7 +6,7 @@ import 'reflect-metadata';
 import { buildSchema } from 'type-graphql';
 import UserResolver from './resolvers/user-resolver';
 
-async function main() {
+const main = async () => {
   await mongoose.connect(
     'mongodb+srv://EstebanGarcia:e3ddXRsxYxhdap4@maincluster.2qdh1.mongodb.net/test?retryWrites=true&w=majority',
     { useNewUrlParser: true, useUnifiedTopology: true }
@@ -27,6 +27,6 @@ async function main() {
   app.listen(4000, () => {
     console.log('Server started on localhost:4000');
   });
-}
+};
 
 main().catch(err => console.log(err));
