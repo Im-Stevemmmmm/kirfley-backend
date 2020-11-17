@@ -1,11 +1,11 @@
 import { ApolloServer } from 'apollo-server-express';
 import cors from 'cors';
+import dotenv from 'dotenv';
 import express from 'express';
 import mongoose from 'mongoose';
 import 'reflect-metadata';
 import { buildSchema } from 'type-graphql';
 import UserResolver from './resolvers/user-resolver';
-import dotenv from 'dotenv';
 
 const main = async () => {
   dotenv.config();
@@ -27,8 +27,9 @@ const main = async () => {
 
   apolloServer.applyMiddleware({ app });
 
-  app.listen(4000, () => {
-    console.log('Server started on localhost:4000');
+  const port = process.env.PORT;
+  app.listen(port, () => {
+    console.log(`server started on localhost:${port}`);
   });
 };
 
