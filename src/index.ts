@@ -4,7 +4,6 @@ import cors from 'cors';
 import express from 'express';
 import 'reflect-metadata';
 import { buildSchema } from 'type-graphql';
-import UserResolver from './resolvers/user-resolver';
 
 const prisma = new PrismaClient();
 
@@ -14,7 +13,10 @@ const main = async () => {
 
   const apolloServer = new ApolloServer({
     schema: await buildSchema({
-      resolvers: [UserResolver],
+      resolvers: [
+        __dirname + '/resolvers/**/*.{ts,js}',
+        __dirname + '/generated/typegraphql-prisma/resolvers/**/*.{ts,js}',
+      ],
       validate: false,
     }),
     context: {
