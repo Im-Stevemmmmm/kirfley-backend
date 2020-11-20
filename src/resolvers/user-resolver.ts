@@ -1,7 +1,7 @@
-import bcrypt from 'bcrypt';
 import ApolloContext from 'src/apollo-context';
 import { Arg, Ctx, Mutation, Query, Resolver } from 'type-graphql';
 import { UserInput, UserResponse } from '../entities/user';
+import argon2 from 'argon2';
 
 @Resolver()
 export default class UserResolver {
@@ -24,9 +24,9 @@ export default class UserResolver {
       };
     }
 
-    const isAuthenticated = await bcrypt.compare(
-      userInput.password,
-      user.password!
+    const isAuthenticated = await argon2.verify(
+      user.password!,
+      userInput.password!
     );
 
     return {
@@ -75,7 +75,7 @@ export default class UserResolver {
         },
       };
 
-    const saltedHash = await bcrypt.hash(userInput.password, 16);
+    const saltedHash = await argon2.hash(userInput.password!);
 
     return {
       user: await prisma.user.create({
