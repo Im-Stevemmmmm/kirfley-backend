@@ -1,5 +1,5 @@
-import { User } from '../generated/typegraphql-prisma';
 import { Field, InputType, ObjectType } from 'type-graphql';
+import { User } from '../generated/typegraphql-prisma';
 
 @ObjectType()
 class Error {
