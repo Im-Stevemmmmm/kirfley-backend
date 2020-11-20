@@ -1,20 +1,14 @@
+import { PrismaClient } from '@prisma/client';
 import { ApolloServer } from 'apollo-server-express';
 import cors from 'cors';
-import dotenv from 'dotenv';
 import express from 'express';
-import mongoose from 'mongoose';
 import 'reflect-metadata';
 import { buildSchema } from 'type-graphql';
 import UserResolver from './resolvers/user-resolver';
 
+const prisma = new PrismaClient();
+
 const main = async () => {
-  dotenv.config();
-
-  await mongoose.connect(
-    `mongodb+srv://${process.env.DB_USERNAME}:${process.env.DB_PASSWORD}@${process.env.DB_CLUSTER}.2qdh1.mongodb.net/test?retryWrites=true&w=majority`,
-    { useNewUrlParser: true, useUnifiedTopology: true }
-  );
-
   const app = express();
   app.use(cors());
 
@@ -23,6 +17,9 @@ const main = async () => {
       resolvers: [UserResolver],
       validate: false,
     }),
+    context: {
+      prisma,
+    },
   });
 
   apolloServer.applyMiddleware({ app });
@@ -33,4 +30,8 @@ const main = async () => {
   });
 };
 
-main().catch(err => console.log(err));
+main()
+  .catch(err => console.log(err))
+  .finally(async () => {
+    await prisma.$disconnect();
+  });

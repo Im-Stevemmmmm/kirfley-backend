@@ -1,25 +1,5 @@
-import { getModelForClass, prop } from '@typegoose/typegoose';
-import { connection } from 'mongoose';
+import { User } from '../generated/typegraphql-prisma';
 import { Field, InputType, ObjectType } from 'type-graphql';
-
-@ObjectType()
-export class User {
-  @prop()
-  @Field()
-  _id?: string;
-
-  @prop()
-  @Field()
-  username?: string;
-
-  @prop()
-  @Field()
-  email?: string;
-
-  @prop()
-  @Field()
-  password?: string;
-}
 
 @ObjectType()
 class Error {
@@ -32,7 +12,7 @@ class Error {
 
 @ObjectType()
 export class UserResponse {
-  @Field(() => User, { nullable: true })
+  @Field({ nullable: true })
   user?: User;
 
   @Field({ nullable: true })
@@ -53,10 +33,3 @@ export class UserInput {
   @Field({ nullable: true })
   password?: string;
 }
-
-export const UserModel = getModelForClass(User, {
-  existingConnection: connection.useDb('userdata'),
-  schemaOptions: {
-    collection: 'users',
-  },
-});

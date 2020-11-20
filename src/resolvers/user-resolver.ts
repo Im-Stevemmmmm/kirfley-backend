@@ -1,14 +1,18 @@
 import bcrypt from 'bcrypt';
-import { Types } from 'mongoose';
-import { Arg, Mutation, Query, Resolver } from 'type-graphql';
-import { UserModel, UserResponse } from '../entities/user';
-import { UserInput } from '../entities/user';
+import ApolloContext from 'src/ApolloContext';
+import { Arg, Ctx, Mutation, Query, Resolver } from 'type-graphql';
+import { UserInput, UserResponse } from '../entities/user';
 
 @Resolver()
 export default class UserResolver {
   @Query(() => UserResponse!)
-  async login(@Arg('options') userInput: UserInput): Promise<UserResponse> {
-    const user = await UserModel.findOne({ email: userInput.email }).exec();
+  async login(
+    @Arg('options') userInput: UserInput,
+    @Ctx() { prisma }: ApolloContext
+  ): Promise<UserResponse> {
+    const user = await prisma.user.findOne({
+      where: { email: userInput.email },
+    });
 
     if (!user) {
       return {
@@ -40,9 +44,12 @@ export default class UserResolver {
   @Query(() => UserResponse!)
   async checkFieldAvailability(
     @Arg('field') field: string,
-    @Arg('value') value: string
+    @Arg('value') value: string,
+    @Ctx() { prisma }: ApolloContext
   ): Promise<UserResponse> {
-    const user = await UserModel.findOne({ [field]: value }).exec();
+    const user = await prisma.user.findOne({
+      where: { [field]: value },
+    });
 
     return {
       successful: user ? false : true,
@@ -51,15 +58,19 @@ export default class UserResolver {
 
   @Mutation(() => UserResponse!)
   async registerUser(
-    @Arg('options') userInput: UserInput
+    @Arg('options') userInput: UserInput,
+    @Ctx() { prisma }: ApolloContext
   ): Promise<UserResponse> {
-    const user = await UserModel.findOne({ email: userInput.email }).exec();
+    const user = await prisma.user.findOne({
+      where: { email: userInput.email },
+    });
 
     if (user)
       return {
         user,
         successful: false,
         error: {
+          target: 'email',
           message: 'Email is already registered.',
         },
       };
@@ -67,11 +78,12 @@ export default class UserResolver {
     const saltedHash = await bcrypt.hash(userInput.password, 16);
 
     return {
-      user: await UserModel.create({
-        _id: Types.ObjectId(),
-        username: userInput.username,
-        email: userInput.email,
-        password: saltedHash,
+      user: await prisma.user.create({
+        data: {
+          username: userInput.username!,
+          email: userInput.email!,
+          password: saltedHash,
+        },
       }),
       successful: true,
     };
@@ -79,13 +91,19 @@ export default class UserResolver {
 
   @Mutation(() => UserResponse!)
   async deleteUser(
-    @Arg('options') userInput: UserInput
+    @Arg('options') userInput: UserInput,
+    @Ctx() { prisma }: ApolloContext
   ): Promise<UserResponse | undefined> {
-    const user = await UserModel.findOne({ email: userInput.email }).exec();
+    const whereStatement = { email: userInput.email };
+
+    const user = await prisma.user.findOne({
+      where: whereStatement,
+    });
+
     if (!user)
       return { successful: false, error: { message: 'User does not exist.' } };
 
-    await user.deleteOne();
+    await prisma.user.delete({ where: whereStatement });
 
     return {
       successful: true,
