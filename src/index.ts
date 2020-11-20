@@ -1,15 +1,47 @@
 import { PrismaClient } from '@prisma/client';
 import { ApolloServer } from 'apollo-server-express';
+import connectRedis from 'connect-redis';
 import cors from 'cors';
 import express from 'express';
+import session from 'express-session';
+import Redis from 'ioredis';
 import 'reflect-metadata';
 import { buildSchema } from 'type-graphql';
 
 const prisma = new PrismaClient();
 
 const main = async () => {
+  const production = process.env.NODE_ENV === 'production';
+
+  const RedisStore = connectRedis(session);
+  const redis = new Redis(process.env.REDIS_URL);
+
   const app = express();
-  app.use(cors());
+
+  app.set('trust proxy', 1);
+
+  app.use(
+    cors({
+      origin: process.env.CORS_ORIGIN,
+      credentials: true,
+    }),
+    session({
+      name: 'uid',
+      store: new RedisStore({
+        client: redis,
+        disableTouch: true,
+      }),
+      cookie: {
+        maxAge: 157680000000,
+        httpOnly: true,
+        sameSite: 'lax',
+        secure: production,
+      },
+      saveUninitialized: false,
+      secret: process.env.SESSION_SECRET,
+      resave: false,
+    })
+  );
 
   const apolloServer = new ApolloServer({
     schema: await buildSchema({
@@ -19,9 +51,11 @@ const main = async () => {
       ],
       validate: false,
     }),
-    context: {
+    context: ({ req, res }) => ({
+      req,
+      res,
       prisma,
-    },
+    }),
   });
 
   apolloServer.applyMiddleware({ app });
