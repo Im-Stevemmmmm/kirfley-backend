@@ -1,5 +1,5 @@
 import bcrypt from 'bcrypt';
-import ApolloContext from 'src/ApolloContext';
+import ApolloContext from 'src/apollo-context';
 import { Arg, Ctx, Mutation, Query, Resolver } from 'type-graphql';
 import { UserInput, UserResponse } from '../entities/user';
 
@@ -8,9 +8,9 @@ export default class UserResolver {
   @Query(() => UserResponse!)
   async login(
     @Arg('options') userInput: UserInput,
-    @Ctx() { db }: ApolloContext
+    @Ctx() { prisma }: ApolloContext
   ): Promise<UserResponse> {
-    const user = await db.user.findOne({
+    const user = await prisma.user.findOne({
       where: { email: userInput.email },
     });
 
@@ -45,9 +45,9 @@ export default class UserResolver {
   async checkFieldAvailability(
     @Arg('field') field: string,
     @Arg('value') value: string,
-    @Ctx() { db }: ApolloContext
+    @Ctx() { prisma }: ApolloContext
   ): Promise<UserResponse> {
-    const user = await db.user.findOne({
+    const user = await prisma.user.findOne({
       where: { [field]: value },
     });
 
@@ -59,9 +59,9 @@ export default class UserResolver {
   @Mutation(() => UserResponse!)
   async registerUser(
     @Arg('options') userInput: UserInput,
-    @Ctx() { db }: ApolloContext
+    @Ctx() { prisma }: ApolloContext
   ): Promise<UserResponse> {
-    const user = await db.user.findOne({
+    const user = await prisma.user.findOne({
       where: { email: userInput.email },
     });
 
@@ -78,7 +78,7 @@ export default class UserResolver {
     const saltedHash = await bcrypt.hash(userInput.password, 16);
 
     return {
-      user: await db.user.create({
+      user: await prisma.user.create({
         data: {
           username: userInput.username!,
           email: userInput.email!,
@@ -92,16 +92,16 @@ export default class UserResolver {
   @Mutation(() => UserResponse!)
   async deleteUser(
     @Arg('options') userInput: UserInput,
-    @Ctx() { db }: ApolloContext
+    @Ctx() { prisma }: ApolloContext
   ): Promise<UserResponse | undefined> {
     const query = { where: { email: userInput.email } };
 
-    const user = await db.user.findOne(query);
+    const user = await prisma.user.findOne(query);
 
     if (!user)
       return { successful: false, error: { message: 'User does not exist.' } };
 
-    await db.user.delete(query);
+    await prisma.user.delete(query);
 
     return {
       successful: true,
