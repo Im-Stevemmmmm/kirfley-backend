@@ -8,9 +8,9 @@ export default class UserResolver {
   @Query(() => UserResponse!)
   async login(
     @Arg('options') userInput: UserInput,
-    @Ctx() { prisma }: ApolloContext
+    @Ctx() { db }: ApolloContext
   ): Promise<UserResponse> {
-    const user = await prisma.user.findOne({
+    const user = await db.user.findOne({
       where: { email: userInput.email },
     });
 
@@ -45,9 +45,9 @@ export default class UserResolver {
   async checkFieldAvailability(
     @Arg('field') field: string,
     @Arg('value') value: string,
-    @Ctx() { prisma }: ApolloContext
+    @Ctx() { db }: ApolloContext
   ): Promise<UserResponse> {
-    const user = await prisma.user.findOne({
+    const user = await db.user.findOne({
       where: { [field]: value },
     });
 
@@ -59,9 +59,9 @@ export default class UserResolver {
   @Mutation(() => UserResponse!)
   async registerUser(
     @Arg('options') userInput: UserInput,
-    @Ctx() { prisma }: ApolloContext
+    @Ctx() { db }: ApolloContext
   ): Promise<UserResponse> {
-    const user = await prisma.user.findOne({
+    const user = await db.user.findOne({
       where: { email: userInput.email },
     });
 
@@ -78,7 +78,7 @@ export default class UserResolver {
     const saltedHash = await bcrypt.hash(userInput.password, 16);
 
     return {
-      user: await prisma.user.create({
+      user: await db.user.create({
         data: {
           username: userInput.username!,
           email: userInput.email!,
@@ -92,18 +92,16 @@ export default class UserResolver {
   @Mutation(() => UserResponse!)
   async deleteUser(
     @Arg('options') userInput: UserInput,
-    @Ctx() { prisma }: ApolloContext
+    @Ctx() { db }: ApolloContext
   ): Promise<UserResponse | undefined> {
-    const whereStatement = { email: userInput.email };
+    const query = { where: { email: userInput.email } };
 
-    const user = await prisma.user.findOne({
-      where: whereStatement,
-    });
+    const user = await db.user.findOne(query);
 
     if (!user)
       return { successful: false, error: { message: 'User does not exist.' } };
 
-    await prisma.user.delete({ where: whereStatement });
+    await db.user.delete(query);
 
     return {
       successful: true,
