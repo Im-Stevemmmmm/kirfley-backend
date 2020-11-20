@@ -1,11 +1,15 @@
-generator typegraphql {
-  provider = "typegraphql-prisma"
-  output   = "../src/generated/typegraphql-prisma"
-}
-
 datasource db {
   provider = "postgresql"
   url = "***"
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+generator typegraphql {
+  provider = "typegraphql-prisma"
+  output   = "../src/generated/typegraphql-prisma"
 }
 
 model User {
