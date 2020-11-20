@@ -15,7 +15,7 @@ const main = async () => {
     schema: await buildSchema({
       resolvers: [
         __dirname + '/resolvers/**/*.{ts,js}',
-        __dirname + '/generated/typegraphql-prisma/resolvers/**/*.{ts,js}',
+        __dirname + '/generated/typegraphql-prisma/*.{ts,js}',
       ],
       validate: false,
     }),
