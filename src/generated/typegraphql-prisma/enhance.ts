@@ -2,7 +2,9 @@ import * as crudResolvers from "./resolvers/crud/resolvers-crud.index";
 import * as actionResolvers from "./resolvers/crud/resolvers-actions.index";
 
 const crudResolversMap = {
-  User: crudResolvers.UserCrudResolver
+  User: crudResolvers.UserCrudResolver,
+  Post: crudResolvers.PostCrudResolver,
+  Comment: crudResolvers.CommentCrudResolver
 };
 const actionResolversMap = {
   User: {
@@ -16,6 +18,30 @@ const actionResolversMap = {
     updateManyUser: actionResolvers.UpdateManyUserResolver,
     upsertUser: actionResolvers.UpsertUserResolver,
     aggregateUser: actionResolvers.AggregateUserResolver
+  },
+  Post: {
+    post: actionResolvers.FindOnePostResolver,
+    findFirstPost: actionResolvers.FindFirstPostResolver,
+    posts: actionResolvers.FindManyPostResolver,
+    createPost: actionResolvers.CreatePostResolver,
+    deletePost: actionResolvers.DeletePostResolver,
+    updatePost: actionResolvers.UpdatePostResolver,
+    deleteManyPost: actionResolvers.DeleteManyPostResolver,
+    updateManyPost: actionResolvers.UpdateManyPostResolver,
+    upsertPost: actionResolvers.UpsertPostResolver,
+    aggregatePost: actionResolvers.AggregatePostResolver
+  },
+  Comment: {
+    comment: actionResolvers.FindOneCommentResolver,
+    findFirstComment: actionResolvers.FindFirstCommentResolver,
+    comments: actionResolvers.FindManyCommentResolver,
+    createComment: actionResolvers.CreateCommentResolver,
+    deleteComment: actionResolvers.DeleteCommentResolver,
+    updateComment: actionResolvers.UpdateCommentResolver,
+    deleteManyComment: actionResolvers.DeleteManyCommentResolver,
+    updateManyComment: actionResolvers.UpdateManyCommentResolver,
+    upsertComment: actionResolvers.UpsertCommentResolver,
+    aggregateComment: actionResolvers.AggregateCommentResolver
   }
 };
 

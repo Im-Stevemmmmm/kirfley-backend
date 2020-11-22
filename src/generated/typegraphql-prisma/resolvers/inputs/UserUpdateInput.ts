@@ -1,6 +1,7 @@
 import * as TypeGraphQL from "type-graphql";
 import GraphQLJSON from "graphql-type-json";
 import { JsonValue, InputJsonValue } from "@prisma/client";
+import { PostUpdateManyWithoutCreatorInput } from "../inputs/PostUpdateManyWithoutCreatorInput";
 import { StringFieldUpdateOperationsInput } from "../inputs/StringFieldUpdateOperationsInput";
 
 @TypeGraphQL.InputType({
@@ -25,4 +26,10 @@ export class UserUpdateInput {
     description: undefined
   })
   password?: StringFieldUpdateOperationsInput | undefined;
+
+  @TypeGraphQL.Field(_type => PostUpdateManyWithoutCreatorInput, {
+    nullable: true,
+    description: undefined
+  })
+  posts?: PostUpdateManyWithoutCreatorInput | undefined;
 }

@@ -1,6 +1,7 @@
 import * as TypeGraphQL from "type-graphql";
 import GraphQLJSON from "graphql-type-json";
 import { JsonValue, InputJsonValue } from "@prisma/client";
+import { Post } from "../models/Post";
 
 @TypeGraphQL.ObjectType({
   isAbstract: true,
@@ -31,4 +32,6 @@ export class User {
     description: undefined,
   })
   password!: string;
+
+  posts?: Post[] | null;
 }

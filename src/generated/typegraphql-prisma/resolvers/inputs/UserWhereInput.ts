@@ -2,6 +2,7 @@ import * as TypeGraphQL from "type-graphql";
 import GraphQLJSON from "graphql-type-json";
 import { JsonValue, InputJsonValue } from "@prisma/client";
 import { IntFilter } from "../inputs/IntFilter";
+import { PostListRelationFilter } from "../inputs/PostListRelationFilter";
 import { StringFilter } from "../inputs/StringFilter";
 
 @TypeGraphQL.InputType({
@@ -50,4 +51,10 @@ export class UserWhereInput {
     description: undefined
   })
   password?: StringFilter | undefined;
+
+  @TypeGraphQL.Field(_type => PostListRelationFilter, {
+    nullable: true,
+    description: undefined
+  })
+  posts?: PostListRelationFilter | undefined;
 }

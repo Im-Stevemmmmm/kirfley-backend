@@ -1,5 +1,15 @@
+export { AggregateComment } from "./AggregateComment";
+export { AggregatePost } from "./AggregatePost";
 export { AggregateUser } from "./AggregateUser";
 export { BatchPayload } from "./BatchPayload";
+export { CommentAvgAggregate } from "./CommentAvgAggregate";
+export { CommentMaxAggregate } from "./CommentMaxAggregate";
+export { CommentMinAggregate } from "./CommentMinAggregate";
+export { CommentSumAggregate } from "./CommentSumAggregate";
+export { PostAvgAggregate } from "./PostAvgAggregate";
+export { PostMaxAggregate } from "./PostMaxAggregate";
+export { PostMinAggregate } from "./PostMinAggregate";
+export { PostSumAggregate } from "./PostSumAggregate";
 export { UserAvgAggregate } from "./UserAvgAggregate";
 export { UserMaxAggregate } from "./UserMaxAggregate";
 export { UserMinAggregate } from "./UserMinAggregate";

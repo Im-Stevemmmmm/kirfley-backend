@@ -1,6 +1,7 @@
 import * as TypeGraphQL from "type-graphql";
 import GraphQLJSON from "graphql-type-json";
 import { JsonValue, InputJsonValue } from "@prisma/client";
+import { PostCreateManyWithoutCreatorInput } from "../inputs/PostCreateManyWithoutCreatorInput";
 
 @TypeGraphQL.InputType({
   isAbstract: true,
@@ -24,4 +25,10 @@ export class UserCreateInput {
     description: undefined
   })
   password!: string;
+
+  @TypeGraphQL.Field(_type => PostCreateManyWithoutCreatorInput, {
+    nullable: true,
+    description: undefined
+  })
+  posts?: PostCreateManyWithoutCreatorInput | undefined;
 }
