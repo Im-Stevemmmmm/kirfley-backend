@@ -7,7 +7,8 @@
     "watch": "tsc --watch",
     "start": "node dist/index.js",
     "dev": "nodemon dist/index.js",
-    "build": "tsc"
+    "build": "tsc",
+    "automigrate": "prisma migrate save --experimental && prisma migrate up --experimental"
   },
   "devDependencies": {
     "@prisma/cli": "^2.11.0",
