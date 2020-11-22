@@ -15,6 +15,12 @@ export class Comment {
   })
   id!: number;
 
+  @TypeGraphQL.Field(_type => String, {
+    nullable: false,
+    description: undefined,
+  })
+  content!: string;
+
   post?: Post;
 
   @TypeGraphQL.Field(_type => TypeGraphQL.Int, {

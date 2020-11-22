@@ -6,6 +6,7 @@ import { CommentCreateWithoutPostInput } from "../inputs/CommentCreateWithoutPos
 import { CommentScalarWhereInput } from "../inputs/CommentScalarWhereInput";
 import { CommentUpdateManyWithWhereWithoutPostInput } from "../inputs/CommentUpdateManyWithWhereWithoutPostInput";
 import { CommentUpdateWithWhereUniqueWithoutPostInput } from "../inputs/CommentUpdateWithWhereUniqueWithoutPostInput";
+import { CommentUpsertWithWhereUniqueWithoutPostInput } from "../inputs/CommentUpsertWithWhereUniqueWithoutPostInput";
 import { CommentWhereUniqueInput } from "../inputs/CommentWhereUniqueInput";
 
 @TypeGraphQL.InputType({
@@ -60,6 +61,12 @@ export class CommentUpdateManyWithoutPostInput {
     description: undefined
   })
   deleteMany?: CommentScalarWhereInput[] | undefined;
+
+  @TypeGraphQL.Field(_type => [CommentUpsertWithWhereUniqueWithoutPostInput], {
+    nullable: true,
+    description: undefined
+  })
+  upsert?: CommentUpsertWithWhereUniqueWithoutPostInput[] | undefined;
 
   @TypeGraphQL.Field(_type => [CommentCreateOrConnectWithoutpostInput], {
     nullable: true,

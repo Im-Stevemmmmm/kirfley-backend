@@ -18,5 +18,11 @@ export class CommentOrderByInput {
     nullable: true,
     description: undefined
   })
+  content?: "asc" | "desc" | undefined;
+
+  @TypeGraphQL.Field(_type => SortOrder, {
+    nullable: true,
+    description: undefined
+  })
   postId?: "asc" | "desc" | undefined;
 }

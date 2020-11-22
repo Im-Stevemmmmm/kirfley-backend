@@ -11,6 +11,7 @@ export { CommentUpdateManyWithWhereWithoutPostInput } from "./CommentUpdateManyW
 export { CommentUpdateManyWithoutPostInput } from "./CommentUpdateManyWithoutPostInput";
 export { CommentUpdateWithWhereUniqueWithoutPostInput } from "./CommentUpdateWithWhereUniqueWithoutPostInput";
 export { CommentUpdateWithoutPostInput } from "./CommentUpdateWithoutPostInput";
+export { CommentUpsertWithWhereUniqueWithoutPostInput } from "./CommentUpsertWithWhereUniqueWithoutPostInput";
 export { CommentWhereInput } from "./CommentWhereInput";
 export { CommentWhereUniqueInput } from "./CommentWhereUniqueInput";
 export { IntFilter } from "./IntFilter";

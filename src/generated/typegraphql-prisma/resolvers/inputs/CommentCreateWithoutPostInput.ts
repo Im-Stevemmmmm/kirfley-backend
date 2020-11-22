@@ -7,4 +7,9 @@ import { JsonValue, InputJsonValue } from "@prisma/client";
   description: undefined,
 })
 export class CommentCreateWithoutPostInput {
+  @TypeGraphQL.Field(_type => String, {
+    nullable: false,
+    description: undefined
+  })
+  content!: string;
 }

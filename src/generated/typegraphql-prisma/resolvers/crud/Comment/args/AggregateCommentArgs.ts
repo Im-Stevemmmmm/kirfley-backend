@@ -23,5 +23,5 @@ export class AggregateCommentArgs {
   skip?: number | undefined;
 
   @TypeGraphQL.Field(_type => [CommentDistinctFieldEnum], { nullable: true })
-  distinct?: Array<"id" | "postId"> | undefined;
+  distinct?: Array<"id" | "content" | "postId"> | undefined;
 }

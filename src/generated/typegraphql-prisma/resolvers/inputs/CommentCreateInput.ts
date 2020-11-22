@@ -8,6 +8,12 @@ import { PostCreateOneWithoutCommentsInput } from "../inputs/PostCreateOneWithou
   description: undefined,
 })
 export class CommentCreateInput {
+  @TypeGraphQL.Field(_type => String, {
+    nullable: false,
+    description: undefined
+  })
+  content!: string;
+
   @TypeGraphQL.Field(_type => PostCreateOneWithoutCommentsInput, {
     nullable: false,
     description: undefined
