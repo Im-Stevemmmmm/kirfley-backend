@@ -1,7 +1,7 @@
 import { PrismaClient } from '@prisma/client';
 
-export default interface ApolloContext {
+export type ApolloContext = {
   req: Request;
   res: Response;
   prisma: PrismaClient;
-}
+};

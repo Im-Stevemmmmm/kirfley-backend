@@ -1,4 +1,4 @@
-import ApolloContext from 'src/apollo-context';
+import { ApolloContext } from 'src/apollo-context';
 import { Arg, Ctx, Mutation, Query, Resolver } from 'type-graphql';
 import { UserInput, UserResponse } from '../entities/user';
 import argon2 from 'argon2';
