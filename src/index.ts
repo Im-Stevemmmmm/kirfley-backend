@@ -5,6 +5,7 @@ import cors from 'cors';
 import express from 'express';
 import session from 'express-session';
 import Redis from 'ioredis';
+import path from 'path';
 import 'reflect-metadata';
 import { buildSchema } from 'type-graphql';
 
@@ -46,8 +47,8 @@ const main = async () => {
   const apolloServer = new ApolloServer({
     schema: await buildSchema({
       resolvers: [
-        __dirname + '/resolvers/**/*.{ts,js}',
-        __dirname + '/generated/typegraphql-prisma/*.{ts,js}',
+        path.join(__dirname, './resolvers/**/*.{ts,js}'),
+        path.join(__dirname, './generated/typegraphql-prisma/*.{ts,js}'),
       ],
       validate: false,
     }),

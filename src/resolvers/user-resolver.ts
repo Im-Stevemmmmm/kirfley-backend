@@ -1,14 +1,22 @@
-import { ApolloContext } from 'src/apollo-context';
+import argon2 from 'argon2';
+import { ResolverContext } from 'src/resolver-context';
 import { Arg, Ctx, Mutation, Query, Resolver } from 'type-graphql';
 import { UserInput, UserResponse } from '../entities/user';
-import argon2 from 'argon2';
+import { User } from '../generated/typegraphql-prisma';
 
 @Resolver()
 export default class UserResolver {
+  @Query(() => User, { nullable: true })
+  async me(@Ctx() { req, prisma }: ResolverContext) {
+    req.session.userId = '3';
+
+    // return await prisma.user.findOne({ where: { id: userId } });
+  }
+
   @Query(() => UserResponse!)
   async login(
     @Arg('options') userInput: UserInput,
-    @Ctx() { prisma }: ApolloContext
+    @Ctx() { prisma }: ResolverContext
   ): Promise<UserResponse> {
     const user = await prisma.user.findOne({
       where: { email: userInput.email },
@@ -45,7 +53,7 @@ export default class UserResolver {
   async checkFieldAvailability(
     @Arg('field') field: string,
     @Arg('value') value: string,
-    @Ctx() { prisma }: ApolloContext
+    @Ctx() { prisma }: ResolverContext
   ): Promise<UserResponse> {
     const user = await prisma.user.findOne({
       where: { [field]: value },
@@ -59,7 +67,7 @@ export default class UserResolver {
   @Mutation(() => UserResponse!)
   async registerUser(
     @Arg('options') userInput: UserInput,
-    @Ctx() { prisma }: ApolloContext
+    @Ctx() { prisma }: ResolverContext
   ): Promise<UserResponse> {
     const user = await prisma.user.findOne({
       where: { email: userInput.email },
@@ -92,7 +100,7 @@ export default class UserResolver {
   @Mutation(() => UserResponse!)
   async deleteUser(
     @Arg('options') userInput: UserInput,
-    @Ctx() { prisma }: ApolloContext
+    @Ctx() { prisma }: ResolverContext
   ): Promise<UserResponse | undefined> {
     const query = { where: { email: userInput.email } };
 
