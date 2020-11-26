@@ -17,11 +17,14 @@ export default class UserResolver {
 
   @Query(() => UserResponse!)
   async login(
-    @Arg('options') userInput: UserInput,
-    @Ctx() { prisma }: ResolverContext
+    @Arg('usernameOrEmail') usernameOrEmail: string,
+    @Arg('password') password: string,
+    @Ctx() { req, prisma }: ResolverContext
   ): Promise<UserResponse> {
     const user = await prisma.user.findOne({
-      where: { email: userInput.email },
+      where: usernameOrEmail.includes('@')
+        ? { email: usernameOrEmail }
+        : { username: usernameOrEmail },
     });
 
     if (!user) {
@@ -34,10 +37,9 @@ export default class UserResolver {
       };
     }
 
-    const isAuthenticated = await argon2.verify(
-      user.password!,
-      userInput.password!
-    );
+    const isAuthenticated = await argon2.verify(user.password!, password);
+
+    req.session.userId = user.id;
 
     return {
       user,
