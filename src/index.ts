@@ -37,6 +37,7 @@ const main = async () => {
         httpOnly: true,
         sameSite: 'lax',
         secure: production,
+        domain: undefined,
       },
       saveUninitialized: false,
       secret: process.env.SESSION_SECRET,

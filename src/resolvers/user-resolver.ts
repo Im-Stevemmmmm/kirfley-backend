@@ -8,9 +8,11 @@ import { User } from '../generated/typegraphql-prisma';
 export default class UserResolver {
   @Query(() => User, { nullable: true })
   async me(@Ctx() { req, prisma }: ResolverContext) {
-    req.session.userId = '3';
+    const userId = req.session.userId;
 
-    // return await prisma.user.findOne({ where: { id: userId } });
+    if (!userId) return null;
+
+    return await prisma.user.findOne({ where: { id: userId } });
   }
 
   @Query(() => UserResponse!)
