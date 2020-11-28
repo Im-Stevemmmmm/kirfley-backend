@@ -1,6 +1,7 @@
 import argon2 from 'argon2';
 import { ResolverContext } from 'src/resolver-context';
 import { Arg, Ctx, Mutation, Query, Resolver } from 'type-graphql';
+import { cookieName } from '../constants';
 import { UserInput, UserResponse } from '../entities/user';
 import { User } from '../generated/typegraphql-prisma';
 
@@ -15,7 +16,7 @@ export default class UserResolver {
     return await prisma.user.findOne({ where: { id: userId } });
   }
 
-  @Query(() => UserResponse!)
+  @Mutation(() => UserResponse!)
   async login(
     @Arg('usernameOrEmail') usernameOrEmail: string,
     @Arg('password') password: string,
@@ -71,7 +72,7 @@ export default class UserResolver {
   @Mutation(() => UserResponse!)
   async registerUser(
     @Arg('options') userInput: UserInput,
-    @Ctx() { prisma }: ResolverContext
+    @Ctx() { req, prisma }: ResolverContext
   ): Promise<UserResponse> {
     const user = await prisma.user.findOne({
       where: { email: userInput.email },
@@ -88,6 +89,7 @@ export default class UserResolver {
       };
 
     const saltedHash = await argon2.hash(userInput.password!);
+    req.session.userId = user!.id;
 
     return {
       user: await prisma.user.create({
@@ -101,13 +103,29 @@ export default class UserResolver {
     };
   }
 
+  @Mutation(() => Boolean!)
+  async logout(@Ctx() { req, res }: ResolverContext) {
+    return new Promise(resolve =>
+      req.session.destroy(err => {
+        res.clearCookie(cookieName);
+
+        if (err) {
+          console.log(err);
+          resolve(false);
+          return;
+        }
+
+        resolve(true);
+      })
+    );
+  }
+
   @Mutation(() => UserResponse!)
   async deleteUser(
     @Arg('options') userInput: UserInput,
     @Ctx() { prisma }: ResolverContext
   ): Promise<UserResponse | undefined> {
     const query = { where: { email: userInput.email } };
-
     const user = await prisma.user.findOne(query);
 
     if (!user)
@@ -115,13 +133,6 @@ export default class UserResolver {
 
     await prisma.user.delete(query);
 
-    return {
-      successful: true,
-    };
-  }
-
-  @Mutation(() => UserResponse!)
-  async forgotPassword(): Promise<UserResponse> {
     return {
       successful: true,
     };
