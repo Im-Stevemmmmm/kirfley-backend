@@ -8,12 +8,11 @@ import Redis from 'ioredis';
 import path from 'path';
 import 'reflect-metadata';
 import { buildSchema } from 'type-graphql';
+import { cookieName, production } from './constants';
 
 const prisma = new PrismaClient();
 
 const main = async () => {
-  const production = process.env.NODE_ENV === 'production';
-
   const RedisStore = connectRedis(session);
   const redis = new Redis(process.env.REDIS_URL);
 
@@ -27,7 +26,7 @@ const main = async () => {
       credentials: true,
     }),
     session({
-      name: 'uid',
+      name: cookieName,
       store: new RedisStore({
         client: redis,
         disableTouch: true,
@@ -60,7 +59,7 @@ const main = async () => {
     }),
   });
 
-  apolloServer.applyMiddleware({ app });
+  apolloServer.applyMiddleware({ app, cors: false });
 
   const port = process.env.PORT;
   app.listen(port, () => {
