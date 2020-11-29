@@ -1,12 +1,12 @@
 {
-  "version": "0.3.14-fixed",
-  "steps": [
-    {
-      "tag": "CreateField",
-      "model": "Comment",
-      "field": "content",
-      "type": "String",
-      "arity": "Required"
-    }
-  ]
+    "version": "0.3.14-fixed",
+    "steps": [
+        {
+            "tag": "CreateField",
+            "model": "Comment",
+            "field": "content",
+            "type": "String",
+            "arity": "Required"
+        }
+    ]
 }

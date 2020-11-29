@@ -83,5 +83,3 @@ migration ..20201122023702-initialization
 +  postId Int
 +}
 ```
-
-

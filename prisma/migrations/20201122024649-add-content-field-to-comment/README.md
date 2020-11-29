@@ -37,5 +37,3 @@ migration 20201122023702-initialization..20201122024649-add-content-field-to-com
 +  postId  Int
  }
 ```
-
-
