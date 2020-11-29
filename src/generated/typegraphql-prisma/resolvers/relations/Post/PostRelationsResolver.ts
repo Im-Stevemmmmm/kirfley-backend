@@ -1,8 +1,8 @@
-import * as TypeGraphQL from 'type-graphql';
-import { Comment } from '../../../models/Comment';
-import { Post } from '../../../models/Post';
-import { User } from '../../../models/User';
-import { PostCommentsArgs } from './args/PostCommentsArgs';
+import * as TypeGraphQL from "type-graphql";
+import { Comment } from "../../../models/Comment";
+import { Post } from "../../../models/Post";
+import { User } from "../../../models/User";
+import { PostCommentsArgs } from "./args/PostCommentsArgs";
 
 @TypeGraphQL.Resolver(_of => Post)
 export class PostRelationsResolver {

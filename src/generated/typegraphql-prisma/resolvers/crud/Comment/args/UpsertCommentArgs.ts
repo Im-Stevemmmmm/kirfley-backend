@@ -1,7 +1,7 @@
-import * as TypeGraphQL from 'type-graphql';
-import { CommentCreateInput } from '../../../inputs/CommentCreateInput';
-import { CommentUpdateInput } from '../../../inputs/CommentUpdateInput';
-import { CommentWhereUniqueInput } from '../../../inputs/CommentWhereUniqueInput';
+import * as TypeGraphQL from "type-graphql";
+import { CommentCreateInput } from "../../../inputs/CommentCreateInput";
+import { CommentUpdateInput } from "../../../inputs/CommentUpdateInput";
+import { CommentWhereUniqueInput } from "../../../inputs/CommentWhereUniqueInput";
 
 @TypeGraphQL.ArgsType()
 export class UpsertCommentArgs {

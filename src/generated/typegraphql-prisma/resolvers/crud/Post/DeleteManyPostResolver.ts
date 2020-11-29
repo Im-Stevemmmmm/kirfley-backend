@@ -1,7 +1,7 @@
-import * as TypeGraphQL from 'type-graphql';
-import { Post } from '../../../models/Post';
-import { BatchPayload } from '../../outputs/BatchPayload';
-import { DeleteManyPostArgs } from './args/DeleteManyPostArgs';
+import * as TypeGraphQL from "type-graphql";
+import { Post } from "../../../models/Post";
+import { BatchPayload } from "../../outputs/BatchPayload";
+import { DeleteManyPostArgs } from "./args/DeleteManyPostArgs";
 
 @TypeGraphQL.Resolver(_of => Post)
 export class DeleteManyPostResolver {

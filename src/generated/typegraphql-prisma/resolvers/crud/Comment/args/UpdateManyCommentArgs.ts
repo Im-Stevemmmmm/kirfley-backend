@@ -1,6 +1,6 @@
-import * as TypeGraphQL from 'type-graphql';
-import { CommentUpdateManyMutationInput } from '../../../inputs/CommentUpdateManyMutationInput';
-import { CommentWhereInput } from '../../../inputs/CommentWhereInput';
+import * as TypeGraphQL from "type-graphql";
+import { CommentUpdateManyMutationInput } from "../../../inputs/CommentUpdateManyMutationInput";
+import { CommentWhereInput } from "../../../inputs/CommentWhereInput";
 
 @TypeGraphQL.ArgsType()
 export class UpdateManyCommentArgs {

@@ -1,11 +1,11 @@
-import * as TypeGraphQL from 'type-graphql';
-import { PostCreateOrConnectWithoutcreatorInput } from '../inputs/PostCreateOrConnectWithoutcreatorInput';
-import { PostCreateWithoutCreatorInput } from '../inputs/PostCreateWithoutCreatorInput';
-import { PostScalarWhereInput } from '../inputs/PostScalarWhereInput';
-import { PostUpdateManyWithWhereWithoutCreatorInput } from '../inputs/PostUpdateManyWithWhereWithoutCreatorInput';
-import { PostUpdateWithWhereUniqueWithoutCreatorInput } from '../inputs/PostUpdateWithWhereUniqueWithoutCreatorInput';
-import { PostUpsertWithWhereUniqueWithoutCreatorInput } from '../inputs/PostUpsertWithWhereUniqueWithoutCreatorInput';
-import { PostWhereUniqueInput } from '../inputs/PostWhereUniqueInput';
+import * as TypeGraphQL from "type-graphql";
+import { PostCreateOrConnectWithoutcreatorInput } from "../inputs/PostCreateOrConnectWithoutcreatorInput";
+import { PostCreateWithoutCreatorInput } from "../inputs/PostCreateWithoutCreatorInput";
+import { PostScalarWhereInput } from "../inputs/PostScalarWhereInput";
+import { PostUpdateManyWithWhereWithoutCreatorInput } from "../inputs/PostUpdateManyWithWhereWithoutCreatorInput";
+import { PostUpdateWithWhereUniqueWithoutCreatorInput } from "../inputs/PostUpdateWithWhereUniqueWithoutCreatorInput";
+import { PostUpsertWithWhereUniqueWithoutCreatorInput } from "../inputs/PostUpsertWithWhereUniqueWithoutCreatorInput";
+import { PostWhereUniqueInput } from "../inputs/PostWhereUniqueInput";
 
 @TypeGraphQL.InputType({
     isAbstract: true,

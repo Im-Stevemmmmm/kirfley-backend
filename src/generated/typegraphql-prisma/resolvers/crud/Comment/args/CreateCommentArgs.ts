@@ -1,5 +1,5 @@
-import * as TypeGraphQL from 'type-graphql';
-import { CommentCreateInput } from '../../../inputs/CommentCreateInput';
+import * as TypeGraphQL from "type-graphql";
+import { CommentCreateInput } from "../../../inputs/CommentCreateInput";
 
 @TypeGraphQL.ArgsType()
 export class CreateCommentArgs {

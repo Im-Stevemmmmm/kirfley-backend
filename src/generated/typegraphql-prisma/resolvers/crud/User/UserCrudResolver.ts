@@ -1,19 +1,19 @@
-import { GraphQLResolveInfo } from 'graphql';
-import graphqlFields from 'graphql-fields';
-import * as TypeGraphQL from 'type-graphql';
-import { User } from '../../../models/User';
-import { AggregateUser } from '../../outputs/AggregateUser';
-import { BatchPayload } from '../../outputs/BatchPayload';
-import { AggregateUserArgs } from './args/AggregateUserArgs';
-import { CreateUserArgs } from './args/CreateUserArgs';
-import { DeleteManyUserArgs } from './args/DeleteManyUserArgs';
-import { DeleteUserArgs } from './args/DeleteUserArgs';
-import { FindFirstUserArgs } from './args/FindFirstUserArgs';
-import { FindManyUserArgs } from './args/FindManyUserArgs';
-import { FindOneUserArgs } from './args/FindOneUserArgs';
-import { UpdateManyUserArgs } from './args/UpdateManyUserArgs';
-import { UpdateUserArgs } from './args/UpdateUserArgs';
-import { UpsertUserArgs } from './args/UpsertUserArgs';
+import { GraphQLResolveInfo } from "graphql";
+import graphqlFields from "graphql-fields";
+import * as TypeGraphQL from "type-graphql";
+import { User } from "../../../models/User";
+import { AggregateUser } from "../../outputs/AggregateUser";
+import { BatchPayload } from "../../outputs/BatchPayload";
+import { AggregateUserArgs } from "./args/AggregateUserArgs";
+import { CreateUserArgs } from "./args/CreateUserArgs";
+import { DeleteManyUserArgs } from "./args/DeleteManyUserArgs";
+import { DeleteUserArgs } from "./args/DeleteUserArgs";
+import { FindFirstUserArgs } from "./args/FindFirstUserArgs";
+import { FindManyUserArgs } from "./args/FindManyUserArgs";
+import { FindOneUserArgs } from "./args/FindOneUserArgs";
+import { UpdateManyUserArgs } from "./args/UpdateManyUserArgs";
+import { UpdateUserArgs } from "./args/UpdateUserArgs";
+import { UpsertUserArgs } from "./args/UpsertUserArgs";
 
 @TypeGraphQL.Resolver(_of => User)
 export class UserCrudResolver {
@@ -130,7 +130,7 @@ export class UserCrudResolver {
         ): Record<string, any> {
             return Object.fromEntries(
                 Object.entries(fields)
-                    .filter(([key, value]) => !key.startsWith('_'))
+                    .filter(([key, value]) => !key.startsWith("_"))
                     .map<[string, any]>(([key, value]) => {
                         if (Object.keys(value).length === 0) {
                             return [key, true];

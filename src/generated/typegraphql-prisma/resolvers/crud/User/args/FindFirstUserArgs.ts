@@ -1,8 +1,8 @@
-import * as TypeGraphQL from 'type-graphql';
-import { UserDistinctFieldEnum } from '../../../../enums/UserDistinctFieldEnum';
-import { UserOrderByInput } from '../../../inputs/UserOrderByInput';
-import { UserWhereInput } from '../../../inputs/UserWhereInput';
-import { UserWhereUniqueInput } from '../../../inputs/UserWhereUniqueInput';
+import * as TypeGraphQL from "type-graphql";
+import { UserDistinctFieldEnum } from "../../../../enums/UserDistinctFieldEnum";
+import { UserOrderByInput } from "../../../inputs/UserOrderByInput";
+import { UserWhereInput } from "../../../inputs/UserWhereInput";
+import { UserWhereUniqueInput } from "../../../inputs/UserWhereUniqueInput";
 
 @TypeGraphQL.ArgsType()
 export class FindFirstUserArgs {
@@ -22,5 +22,5 @@ export class FindFirstUserArgs {
     skip?: number | undefined;
 
     @TypeGraphQL.Field(_type => [UserDistinctFieldEnum], { nullable: true })
-    distinct?: Array<'id' | 'username' | 'email' | 'password'> | undefined;
+    distinct?: Array<"id" | "username" | "email" | "password"> | undefined;
 }

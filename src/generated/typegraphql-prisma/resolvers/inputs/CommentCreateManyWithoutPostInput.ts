@@ -1,7 +1,7 @@
-import * as TypeGraphQL from 'type-graphql';
-import { CommentCreateOrConnectWithoutpostInput } from '../inputs/CommentCreateOrConnectWithoutpostInput';
-import { CommentCreateWithoutPostInput } from '../inputs/CommentCreateWithoutPostInput';
-import { CommentWhereUniqueInput } from '../inputs/CommentWhereUniqueInput';
+import * as TypeGraphQL from "type-graphql";
+import { CommentCreateOrConnectWithoutpostInput } from "../inputs/CommentCreateOrConnectWithoutpostInput";
+import { CommentCreateWithoutPostInput } from "../inputs/CommentCreateWithoutPostInput";
+import { CommentWhereUniqueInput } from "../inputs/CommentWhereUniqueInput";
 
 @TypeGraphQL.InputType({
     isAbstract: true,

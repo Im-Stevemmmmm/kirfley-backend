@@ -1,19 +1,19 @@
-import { GraphQLResolveInfo } from 'graphql';
-import graphqlFields from 'graphql-fields';
-import * as TypeGraphQL from 'type-graphql';
-import { Comment } from '../../../models/Comment';
-import { AggregateComment } from '../../outputs/AggregateComment';
-import { BatchPayload } from '../../outputs/BatchPayload';
-import { AggregateCommentArgs } from './args/AggregateCommentArgs';
-import { CreateCommentArgs } from './args/CreateCommentArgs';
-import { DeleteCommentArgs } from './args/DeleteCommentArgs';
-import { DeleteManyCommentArgs } from './args/DeleteManyCommentArgs';
-import { FindFirstCommentArgs } from './args/FindFirstCommentArgs';
-import { FindManyCommentArgs } from './args/FindManyCommentArgs';
-import { FindOneCommentArgs } from './args/FindOneCommentArgs';
-import { UpdateCommentArgs } from './args/UpdateCommentArgs';
-import { UpdateManyCommentArgs } from './args/UpdateManyCommentArgs';
-import { UpsertCommentArgs } from './args/UpsertCommentArgs';
+import { GraphQLResolveInfo } from "graphql";
+import graphqlFields from "graphql-fields";
+import * as TypeGraphQL from "type-graphql";
+import { Comment } from "../../../models/Comment";
+import { AggregateComment } from "../../outputs/AggregateComment";
+import { BatchPayload } from "../../outputs/BatchPayload";
+import { AggregateCommentArgs } from "./args/AggregateCommentArgs";
+import { CreateCommentArgs } from "./args/CreateCommentArgs";
+import { DeleteCommentArgs } from "./args/DeleteCommentArgs";
+import { DeleteManyCommentArgs } from "./args/DeleteManyCommentArgs";
+import { FindFirstCommentArgs } from "./args/FindFirstCommentArgs";
+import { FindManyCommentArgs } from "./args/FindManyCommentArgs";
+import { FindOneCommentArgs } from "./args/FindOneCommentArgs";
+import { UpdateCommentArgs } from "./args/UpdateCommentArgs";
+import { UpdateManyCommentArgs } from "./args/UpdateManyCommentArgs";
+import { UpsertCommentArgs } from "./args/UpsertCommentArgs";
 
 @TypeGraphQL.Resolver(_of => Comment)
 export class CommentCrudResolver {
@@ -130,7 +130,7 @@ export class CommentCrudResolver {
         ): Record<string, any> {
             return Object.fromEntries(
                 Object.entries(fields)
-                    .filter(([key, value]) => !key.startsWith('_'))
+                    .filter(([key, value]) => !key.startsWith("_"))
                     .map<[string, any]>(([key, value]) => {
                         if (Object.keys(value).length === 0) {
                             return [key, true];

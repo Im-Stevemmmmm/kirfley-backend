@@ -1,5 +1,5 @@
-import * as TypeGraphQL from 'type-graphql';
-import { CommentWhereInput } from '../inputs/CommentWhereInput';
+import * as TypeGraphQL from "type-graphql";
+import { CommentWhereInput } from "../inputs/CommentWhereInput";
 
 @TypeGraphQL.InputType({
     isAbstract: true,

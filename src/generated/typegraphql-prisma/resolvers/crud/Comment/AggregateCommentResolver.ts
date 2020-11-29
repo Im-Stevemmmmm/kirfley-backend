@@ -1,9 +1,9 @@
-import { GraphQLResolveInfo } from 'graphql';
-import graphqlFields from 'graphql-fields';
-import * as TypeGraphQL from 'type-graphql';
-import { Comment } from '../../../models/Comment';
-import { AggregateComment } from '../../outputs/AggregateComment';
-import { AggregateCommentArgs } from './args/AggregateCommentArgs';
+import { GraphQLResolveInfo } from "graphql";
+import graphqlFields from "graphql-fields";
+import * as TypeGraphQL from "type-graphql";
+import { Comment } from "../../../models/Comment";
+import { AggregateComment } from "../../outputs/AggregateComment";
+import { AggregateCommentArgs } from "./args/AggregateCommentArgs";
 
 @TypeGraphQL.Resolver(_of => Comment)
 export class AggregateCommentResolver {
@@ -21,7 +21,7 @@ export class AggregateCommentResolver {
         ): Record<string, any> {
             return Object.fromEntries(
                 Object.entries(fields)
-                    .filter(([key, value]) => !key.startsWith('_'))
+                    .filter(([key, value]) => !key.startsWith("_"))
                     .map<[string, any]>(([key, value]) => {
                         if (Object.keys(value).length === 0) {
                             return [key, true];

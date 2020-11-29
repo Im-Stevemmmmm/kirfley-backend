@@ -1,6 +1,6 @@
-import * as TypeGraphQL from 'type-graphql';
-import { PostUpdateManyWithoutCreatorInput } from '../inputs/PostUpdateManyWithoutCreatorInput';
-import { StringFieldUpdateOperationsInput } from '../inputs/StringFieldUpdateOperationsInput';
+import * as TypeGraphQL from "type-graphql";
+import { PostUpdateManyWithoutCreatorInput } from "../inputs/PostUpdateManyWithoutCreatorInput";
+import { StringFieldUpdateOperationsInput } from "../inputs/StringFieldUpdateOperationsInput";
 
 @TypeGraphQL.InputType({
     isAbstract: true,

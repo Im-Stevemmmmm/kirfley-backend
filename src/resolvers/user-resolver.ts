@@ -1,9 +1,9 @@
-import argon2 from 'argon2';
-import { ResolverContext } from 'src/resolver-context';
-import { Arg, Ctx, Mutation, Query, Resolver } from 'type-graphql';
-import { cookieName } from '../constants';
-import { UserInput, UserResponse } from '../entities/user';
-import { User } from '../generated/typegraphql-prisma';
+import argon2 from "argon2";
+import { ResolverContext } from "src/resolver-context";
+import { Arg, Ctx, Mutation, Query, Resolver } from "type-graphql";
+import { cookieName } from "../constants";
+import { UserInput, UserResponse } from "../entities/user";
+import { User } from "../generated/typegraphql-prisma";
 
 @Resolver()
 export default class UserResolver {
@@ -18,12 +18,12 @@ export default class UserResolver {
 
     @Mutation(() => UserResponse!)
     async login(
-        @Arg('usernameOrEmail') usernameOrEmail: string,
-        @Arg('password') password: string,
+        @Arg("usernameOrEmail") usernameOrEmail: string,
+        @Arg("password") password: string,
         @Ctx() { req, prisma }: ResolverContext
     ): Promise<UserResponse> {
         const user = await prisma.user.findOne({
-            where: usernameOrEmail.includes('@')
+            where: usernameOrEmail.includes("@")
                 ? { email: usernameOrEmail }
                 : { username: usernameOrEmail },
         });
@@ -32,8 +32,8 @@ export default class UserResolver {
             return {
                 successful: false,
                 error: {
-                    target: 'email',
-                    message: 'User does not exist.',
+                    target: "email",
+                    message: "User does not exist.",
                 },
             };
         }
@@ -48,16 +48,16 @@ export default class UserResolver {
             error: isAuthenticated
                 ? undefined
                 : {
-                      target: 'password',
-                      message: 'Incorrect password.',
+                      target: "password",
+                      message: "Incorrect password.",
                   },
         };
     }
 
     @Query(() => UserResponse!)
     async checkFieldAvailability(
-        @Arg('field') field: string,
-        @Arg('value') value: string,
+        @Arg("field") field: string,
+        @Arg("value") value: string,
         @Ctx() { prisma }: ResolverContext
     ): Promise<UserResponse> {
         const user = await prisma.user.findOne({
@@ -71,7 +71,7 @@ export default class UserResolver {
 
     @Mutation(() => UserResponse!)
     async registerUser(
-        @Arg('options') userInput: UserInput,
+        @Arg("options") userInput: UserInput,
         @Ctx() { req, prisma }: ResolverContext
     ): Promise<UserResponse> {
         const user = await prisma.user.findOne({
@@ -83,8 +83,8 @@ export default class UserResolver {
                 user,
                 successful: false,
                 error: {
-                    target: 'email',
-                    message: 'Email is already registered.',
+                    target: "email",
+                    message: "Email is already registered.",
                 },
             };
 
@@ -125,7 +125,7 @@ export default class UserResolver {
 
     @Mutation(() => UserResponse!)
     async deleteUser(
-        @Arg('options') userInput: UserInput,
+        @Arg("options") userInput: UserInput,
         @Ctx() { prisma }: ResolverContext
     ): Promise<UserResponse | undefined> {
         const query = { where: { email: userInput.email } };
@@ -134,7 +134,7 @@ export default class UserResolver {
         if (!user)
             return {
                 successful: false,
-                error: { message: 'User does not exist.' },
+                error: { message: "User does not exist." },
             };
 
         await prisma.user.delete(query);

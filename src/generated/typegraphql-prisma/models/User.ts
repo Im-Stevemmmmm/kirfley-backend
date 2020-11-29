@@ -1,5 +1,5 @@
-import * as TypeGraphQL from 'type-graphql';
-import { Post } from '../models/Post';
+import * as TypeGraphQL from "type-graphql";
+import { Post } from "../models/Post";
 
 @TypeGraphQL.ObjectType({
     isAbstract: true,

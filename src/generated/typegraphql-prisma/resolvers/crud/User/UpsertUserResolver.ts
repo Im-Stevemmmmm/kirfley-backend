@@ -1,6 +1,6 @@
-import * as TypeGraphQL from 'type-graphql';
-import { User } from '../../../models/User';
-import { UpsertUserArgs } from './args/UpsertUserArgs';
+import * as TypeGraphQL from "type-graphql";
+import { User } from "../../../models/User";
+import { UpsertUserArgs } from "./args/UpsertUserArgs";
 
 @TypeGraphQL.Resolver(_of => User)
 export class UpsertUserResolver {

@@ -1,6 +1,6 @@
-import * as TypeGraphQL from 'type-graphql';
-import { User } from '../../../models/User';
-import { FindManyUserArgs } from './args/FindManyUserArgs';
+import * as TypeGraphQL from "type-graphql";
+import { User } from "../../../models/User";
+import { FindManyUserArgs } from "./args/FindManyUserArgs";
 
 @TypeGraphQL.Resolver(_of => User)
 export class FindManyUserResolver {

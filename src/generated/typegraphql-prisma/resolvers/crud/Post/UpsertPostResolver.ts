@@ -1,6 +1,6 @@
-import * as TypeGraphQL from 'type-graphql';
-import { Post } from '../../../models/Post';
-import { UpsertPostArgs } from './args/UpsertPostArgs';
+import * as TypeGraphQL from "type-graphql";
+import { Post } from "../../../models/Post";
+import { UpsertPostArgs } from "./args/UpsertPostArgs";
 
 @TypeGraphQL.Resolver(_of => Post)
 export class UpsertPostResolver {

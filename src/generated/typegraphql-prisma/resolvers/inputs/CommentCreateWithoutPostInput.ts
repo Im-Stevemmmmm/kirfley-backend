@@ -1,4 +1,4 @@
-import * as TypeGraphQL from 'type-graphql';
+import * as TypeGraphQL from "type-graphql";
 
 @TypeGraphQL.InputType({
     isAbstract: true,

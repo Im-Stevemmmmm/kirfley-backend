@@ -1,6 +1,6 @@
-import * as TypeGraphQL from 'type-graphql';
-import { Comment } from '../models/Comment';
-import { User } from '../models/User';
+import * as TypeGraphQL from "type-graphql";
+import { Comment } from "../models/Comment";
+import { User } from "../models/User";
 
 @TypeGraphQL.ObjectType({
     isAbstract: true,

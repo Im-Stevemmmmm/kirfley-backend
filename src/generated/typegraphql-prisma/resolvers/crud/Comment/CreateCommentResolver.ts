@@ -1,6 +1,6 @@
-import * as TypeGraphQL from 'type-graphql';
-import { Comment } from '../../../models/Comment';
-import { CreateCommentArgs } from './args/CreateCommentArgs';
+import * as TypeGraphQL from "type-graphql";
+import { Comment } from "../../../models/Comment";
+import { CreateCommentArgs } from "./args/CreateCommentArgs";
 
 @TypeGraphQL.Resolver(_of => Comment)
 export class CreateCommentResolver {

@@ -1,5 +1,5 @@
-import * as actionResolvers from './resolvers/crud/resolvers-actions.index';
-import * as crudResolvers from './resolvers/crud/resolvers-crud.index';
+import * as actionResolvers from "./resolvers/crud/resolvers-actions.index";
+import * as crudResolvers from "./resolvers/crud/resolvers-crud.index";
 
 const crudResolversMap = {
     User: crudResolvers.UserCrudResolver,
@@ -49,7 +49,7 @@ type ModelNames = keyof typeof crudResolversMap;
 
 type ModelResolverActionNames<
     TModel extends ModelNames
-> = keyof typeof crudResolversMap[TModel]['prototype'];
+> = keyof typeof crudResolversMap[TModel]["prototype"];
 
 export type ResolverActionsConfig<TModel extends ModelNames> = {
     [TActionName in ModelResolverActionNames<TModel>]?: MethodDecorator[];

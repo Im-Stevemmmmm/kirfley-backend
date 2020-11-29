@@ -1,8 +1,8 @@
-import * as TypeGraphQL from 'type-graphql';
-import { PostDistinctFieldEnum } from '../../../../enums/PostDistinctFieldEnum';
-import { PostOrderByInput } from '../../../inputs/PostOrderByInput';
-import { PostWhereInput } from '../../../inputs/PostWhereInput';
-import { PostWhereUniqueInput } from '../../../inputs/PostWhereUniqueInput';
+import * as TypeGraphQL from "type-graphql";
+import { PostDistinctFieldEnum } from "../../../../enums/PostDistinctFieldEnum";
+import { PostOrderByInput } from "../../../inputs/PostOrderByInput";
+import { PostWhereInput } from "../../../inputs/PostWhereInput";
+import { PostWhereUniqueInput } from "../../../inputs/PostWhereUniqueInput";
 
 @TypeGraphQL.ArgsType()
 export class UserPostsArgs {
@@ -22,5 +22,5 @@ export class UserPostsArgs {
     skip?: number | undefined;
 
     @TypeGraphQL.Field(_type => [PostDistinctFieldEnum], { nullable: true })
-    distinct?: Array<'id' | 'content' | 'creatorId'> | undefined;
+    distinct?: Array<"id" | "content" | "creatorId"> | undefined;
 }

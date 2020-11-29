@@ -1,5 +1,5 @@
-import * as TypeGraphQL from 'type-graphql';
-import { UserCreateInput } from '../../../inputs/UserCreateInput';
+import * as TypeGraphQL from "type-graphql";
+import { UserCreateInput } from "../../../inputs/UserCreateInput";
 
 @TypeGraphQL.ArgsType()
 export class CreateUserArgs {

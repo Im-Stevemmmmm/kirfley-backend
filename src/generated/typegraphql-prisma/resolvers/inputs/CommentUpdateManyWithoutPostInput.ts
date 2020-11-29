@@ -1,11 +1,11 @@
-import * as TypeGraphQL from 'type-graphql';
-import { CommentCreateOrConnectWithoutpostInput } from '../inputs/CommentCreateOrConnectWithoutpostInput';
-import { CommentCreateWithoutPostInput } from '../inputs/CommentCreateWithoutPostInput';
-import { CommentScalarWhereInput } from '../inputs/CommentScalarWhereInput';
-import { CommentUpdateManyWithWhereWithoutPostInput } from '../inputs/CommentUpdateManyWithWhereWithoutPostInput';
-import { CommentUpdateWithWhereUniqueWithoutPostInput } from '../inputs/CommentUpdateWithWhereUniqueWithoutPostInput';
-import { CommentUpsertWithWhereUniqueWithoutPostInput } from '../inputs/CommentUpsertWithWhereUniqueWithoutPostInput';
-import { CommentWhereUniqueInput } from '../inputs/CommentWhereUniqueInput';
+import * as TypeGraphQL from "type-graphql";
+import { CommentCreateOrConnectWithoutpostInput } from "../inputs/CommentCreateOrConnectWithoutpostInput";
+import { CommentCreateWithoutPostInput } from "../inputs/CommentCreateWithoutPostInput";
+import { CommentScalarWhereInput } from "../inputs/CommentScalarWhereInput";
+import { CommentUpdateManyWithWhereWithoutPostInput } from "../inputs/CommentUpdateManyWithWhereWithoutPostInput";
+import { CommentUpdateWithWhereUniqueWithoutPostInput } from "../inputs/CommentUpdateWithWhereUniqueWithoutPostInput";
+import { CommentUpsertWithWhereUniqueWithoutPostInput } from "../inputs/CommentUpsertWithWhereUniqueWithoutPostInput";
+import { CommentWhereUniqueInput } from "../inputs/CommentWhereUniqueInput";
 
 @TypeGraphQL.InputType({
     isAbstract: true,

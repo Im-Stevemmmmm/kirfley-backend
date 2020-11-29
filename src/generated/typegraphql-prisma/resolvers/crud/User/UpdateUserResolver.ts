@@ -1,6 +1,6 @@
-import * as TypeGraphQL from 'type-graphql';
-import { User } from '../../../models/User';
-import { UpdateUserArgs } from './args/UpdateUserArgs';
+import * as TypeGraphQL from "type-graphql";
+import { User } from "../../../models/User";
+import { UpdateUserArgs } from "./args/UpdateUserArgs";
 
 @TypeGraphQL.Resolver(_of => User)
 export class UpdateUserResolver {

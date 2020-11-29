@@ -1,6 +1,6 @@
-import * as TypeGraphQL from 'type-graphql';
-import { UserUpdateInput } from '../../../inputs/UserUpdateInput';
-import { UserWhereUniqueInput } from '../../../inputs/UserWhereUniqueInput';
+import * as TypeGraphQL from "type-graphql";
+import { UserUpdateInput } from "../../../inputs/UserUpdateInput";
+import { UserWhereUniqueInput } from "../../../inputs/UserWhereUniqueInput";
 
 @TypeGraphQL.ArgsType()
 export class UpdateUserArgs {

@@ -1,7 +1,7 @@
-import * as TypeGraphQL from 'type-graphql';
-import { Comment } from '../../../models/Comment';
-import { BatchPayload } from '../../outputs/BatchPayload';
-import { UpdateManyCommentArgs } from './args/UpdateManyCommentArgs';
+import * as TypeGraphQL from "type-graphql";
+import { Comment } from "../../../models/Comment";
+import { BatchPayload } from "../../outputs/BatchPayload";
+import { UpdateManyCommentArgs } from "./args/UpdateManyCommentArgs";
 
 @TypeGraphQL.Resolver(_of => Comment)
 export class UpdateManyCommentResolver {

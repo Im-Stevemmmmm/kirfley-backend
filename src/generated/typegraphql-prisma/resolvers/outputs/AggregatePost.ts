@@ -1,8 +1,8 @@
-import * as TypeGraphQL from 'type-graphql';
-import { PostAvgAggregate } from '../outputs/PostAvgAggregate';
-import { PostMaxAggregate } from '../outputs/PostMaxAggregate';
-import { PostMinAggregate } from '../outputs/PostMinAggregate';
-import { PostSumAggregate } from '../outputs/PostSumAggregate';
+import * as TypeGraphQL from "type-graphql";
+import { PostAvgAggregate } from "../outputs/PostAvgAggregate";
+import { PostMaxAggregate } from "../outputs/PostMaxAggregate";
+import { PostMinAggregate } from "../outputs/PostMinAggregate";
+import { PostSumAggregate } from "../outputs/PostSumAggregate";
 
 @TypeGraphQL.ObjectType({
     isAbstract: true,

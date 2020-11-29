@@ -1,5 +1,5 @@
-import * as TypeGraphQL from 'type-graphql';
-import { UserWhereUniqueInput } from '../../../inputs/UserWhereUniqueInput';
+import * as TypeGraphQL from "type-graphql";
+import { UserWhereUniqueInput } from "../../../inputs/UserWhereUniqueInput";
 
 @TypeGraphQL.ArgsType()
 export class DeleteUserArgs {

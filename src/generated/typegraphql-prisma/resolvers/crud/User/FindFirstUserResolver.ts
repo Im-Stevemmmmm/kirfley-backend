@@ -1,6 +1,6 @@
-import * as TypeGraphQL from 'type-graphql';
-import { User } from '../../../models/User';
-import { FindFirstUserArgs } from './args/FindFirstUserArgs';
+import * as TypeGraphQL from "type-graphql";
+import { User } from "../../../models/User";
+import { FindFirstUserArgs } from "./args/FindFirstUserArgs";
 
 @TypeGraphQL.Resolver(_of => User)
 export class FindFirstUserResolver {

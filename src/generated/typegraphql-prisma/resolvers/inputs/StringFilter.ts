@@ -1,6 +1,6 @@
-import * as TypeGraphQL from 'type-graphql';
-import { QueryMode } from '../../enums/QueryMode';
-import { NestedStringFilter } from '../inputs/NestedStringFilter';
+import * as TypeGraphQL from "type-graphql";
+import { QueryMode } from "../../enums/QueryMode";
+import { NestedStringFilter } from "../inputs/NestedStringFilter";
 
 @TypeGraphQL.InputType({
     isAbstract: true,
@@ -71,7 +71,7 @@ export class StringFilter {
         nullable: true,
         description: undefined,
     })
-    mode?: 'default' | 'insensitive' | undefined;
+    mode?: "default" | "insensitive" | undefined;
 
     @TypeGraphQL.Field(_type => NestedStringFilter, {
         nullable: true,

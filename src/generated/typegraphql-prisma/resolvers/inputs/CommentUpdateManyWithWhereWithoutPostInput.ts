@@ -1,6 +1,6 @@
-import * as TypeGraphQL from 'type-graphql';
-import { CommentScalarWhereInput } from '../inputs/CommentScalarWhereInput';
-import { CommentUpdateManyMutationInput } from '../inputs/CommentUpdateManyMutationInput';
+import * as TypeGraphQL from "type-graphql";
+import { CommentScalarWhereInput } from "../inputs/CommentScalarWhereInput";
+import { CommentUpdateManyMutationInput } from "../inputs/CommentUpdateManyMutationInput";
 
 @TypeGraphQL.InputType({
     isAbstract: true,

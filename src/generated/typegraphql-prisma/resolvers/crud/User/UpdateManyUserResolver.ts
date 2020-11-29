@@ -1,7 +1,7 @@
-import * as TypeGraphQL from 'type-graphql';
-import { User } from '../../../models/User';
-import { BatchPayload } from '../../outputs/BatchPayload';
-import { UpdateManyUserArgs } from './args/UpdateManyUserArgs';
+import * as TypeGraphQL from "type-graphql";
+import { User } from "../../../models/User";
+import { BatchPayload } from "../../outputs/BatchPayload";
+import { UpdateManyUserArgs } from "./args/UpdateManyUserArgs";
 
 @TypeGraphQL.Resolver(_of => User)
 export class UpdateManyUserResolver {

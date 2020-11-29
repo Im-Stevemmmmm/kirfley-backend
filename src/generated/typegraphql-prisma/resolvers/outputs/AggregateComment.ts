@@ -1,8 +1,8 @@
-import * as TypeGraphQL from 'type-graphql';
-import { CommentAvgAggregate } from '../outputs/CommentAvgAggregate';
-import { CommentMaxAggregate } from '../outputs/CommentMaxAggregate';
-import { CommentMinAggregate } from '../outputs/CommentMinAggregate';
-import { CommentSumAggregate } from '../outputs/CommentSumAggregate';
+import * as TypeGraphQL from "type-graphql";
+import { CommentAvgAggregate } from "../outputs/CommentAvgAggregate";
+import { CommentMaxAggregate } from "../outputs/CommentMaxAggregate";
+import { CommentMinAggregate } from "../outputs/CommentMinAggregate";
+import { CommentSumAggregate } from "../outputs/CommentSumAggregate";
 
 @TypeGraphQL.ObjectType({
     isAbstract: true,

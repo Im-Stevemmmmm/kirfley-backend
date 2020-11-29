@@ -1,6 +1,6 @@
-import * as TypeGraphQL from 'type-graphql';
-import { Post } from '../../../models/Post';
-import { DeletePostArgs } from './args/DeletePostArgs';
+import * as TypeGraphQL from "type-graphql";
+import { Post } from "../../../models/Post";
+import { DeletePostArgs } from "./args/DeletePostArgs";
 
 @TypeGraphQL.Resolver(_of => Post)
 export class DeletePostResolver {

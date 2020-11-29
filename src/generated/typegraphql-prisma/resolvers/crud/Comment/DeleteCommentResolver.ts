@@ -1,6 +1,6 @@
-import * as TypeGraphQL from 'type-graphql';
-import { Comment } from '../../../models/Comment';
-import { DeleteCommentArgs } from './args/DeleteCommentArgs';
+import * as TypeGraphQL from "type-graphql";
+import { Comment } from "../../../models/Comment";
+import { DeleteCommentArgs } from "./args/DeleteCommentArgs";
 
 @TypeGraphQL.Resolver(_of => Comment)
 export class DeleteCommentResolver {

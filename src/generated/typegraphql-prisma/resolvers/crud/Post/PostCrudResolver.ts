@@ -1,19 +1,19 @@
-import { GraphQLResolveInfo } from 'graphql';
-import graphqlFields from 'graphql-fields';
-import * as TypeGraphQL from 'type-graphql';
-import { Post } from '../../../models/Post';
-import { AggregatePost } from '../../outputs/AggregatePost';
-import { BatchPayload } from '../../outputs/BatchPayload';
-import { AggregatePostArgs } from './args/AggregatePostArgs';
-import { CreatePostArgs } from './args/CreatePostArgs';
-import { DeleteManyPostArgs } from './args/DeleteManyPostArgs';
-import { DeletePostArgs } from './args/DeletePostArgs';
-import { FindFirstPostArgs } from './args/FindFirstPostArgs';
-import { FindManyPostArgs } from './args/FindManyPostArgs';
-import { FindOnePostArgs } from './args/FindOnePostArgs';
-import { UpdateManyPostArgs } from './args/UpdateManyPostArgs';
-import { UpdatePostArgs } from './args/UpdatePostArgs';
-import { UpsertPostArgs } from './args/UpsertPostArgs';
+import { GraphQLResolveInfo } from "graphql";
+import graphqlFields from "graphql-fields";
+import * as TypeGraphQL from "type-graphql";
+import { Post } from "../../../models/Post";
+import { AggregatePost } from "../../outputs/AggregatePost";
+import { BatchPayload } from "../../outputs/BatchPayload";
+import { AggregatePostArgs } from "./args/AggregatePostArgs";
+import { CreatePostArgs } from "./args/CreatePostArgs";
+import { DeleteManyPostArgs } from "./args/DeleteManyPostArgs";
+import { DeletePostArgs } from "./args/DeletePostArgs";
+import { FindFirstPostArgs } from "./args/FindFirstPostArgs";
+import { FindManyPostArgs } from "./args/FindManyPostArgs";
+import { FindOnePostArgs } from "./args/FindOnePostArgs";
+import { UpdateManyPostArgs } from "./args/UpdateManyPostArgs";
+import { UpdatePostArgs } from "./args/UpdatePostArgs";
+import { UpsertPostArgs } from "./args/UpsertPostArgs";
 
 @TypeGraphQL.Resolver(_of => Post)
 export class PostCrudResolver {
@@ -130,7 +130,7 @@ export class PostCrudResolver {
         ): Record<string, any> {
             return Object.fromEntries(
                 Object.entries(fields)
-                    .filter(([key, value]) => !key.startsWith('_'))
+                    .filter(([key, value]) => !key.startsWith("_"))
                     .map<[string, any]>(([key, value]) => {
                         if (Object.keys(value).length === 0) {
                             return [key, true];

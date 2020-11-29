@@ -1,8 +1,8 @@
-import * as TypeGraphQL from 'type-graphql';
-import { CommentDistinctFieldEnum } from '../../../../enums/CommentDistinctFieldEnum';
-import { CommentOrderByInput } from '../../../inputs/CommentOrderByInput';
-import { CommentWhereInput } from '../../../inputs/CommentWhereInput';
-import { CommentWhereUniqueInput } from '../../../inputs/CommentWhereUniqueInput';
+import * as TypeGraphQL from "type-graphql";
+import { CommentDistinctFieldEnum } from "../../../../enums/CommentDistinctFieldEnum";
+import { CommentOrderByInput } from "../../../inputs/CommentOrderByInput";
+import { CommentWhereInput } from "../../../inputs/CommentWhereInput";
+import { CommentWhereUniqueInput } from "../../../inputs/CommentWhereUniqueInput";
 
 @TypeGraphQL.ArgsType()
 export class PostCommentsArgs {
@@ -22,5 +22,5 @@ export class PostCommentsArgs {
     skip?: number | undefined;
 
     @TypeGraphQL.Field(_type => [CommentDistinctFieldEnum], { nullable: true })
-    distinct?: Array<'id' | 'content' | 'postId'> | undefined;
+    distinct?: Array<"id" | "content" | "postId"> | undefined;
 }

@@ -1,6 +1,6 @@
-import * as TypeGraphQL from 'type-graphql';
-import { PostCreateWithoutCreatorInput } from '../inputs/PostCreateWithoutCreatorInput';
-import { PostWhereUniqueInput } from '../inputs/PostWhereUniqueInput';
+import * as TypeGraphQL from "type-graphql";
+import { PostCreateWithoutCreatorInput } from "../inputs/PostCreateWithoutCreatorInput";
+import { PostWhereUniqueInput } from "../inputs/PostWhereUniqueInput";
 
 @TypeGraphQL.InputType({
     isAbstract: true,

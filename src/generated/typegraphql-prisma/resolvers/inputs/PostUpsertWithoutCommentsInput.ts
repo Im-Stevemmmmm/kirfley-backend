@@ -1,6 +1,6 @@
-import * as TypeGraphQL from 'type-graphql';
-import { PostCreateWithoutCommentsInput } from '../inputs/PostCreateWithoutCommentsInput';
-import { PostUpdateWithoutCommentsInput } from '../inputs/PostUpdateWithoutCommentsInput';
+import * as TypeGraphQL from "type-graphql";
+import { PostCreateWithoutCommentsInput } from "../inputs/PostCreateWithoutCommentsInput";
+import { PostUpdateWithoutCommentsInput } from "../inputs/PostUpdateWithoutCommentsInput";
 
 @TypeGraphQL.InputType({
     isAbstract: true,

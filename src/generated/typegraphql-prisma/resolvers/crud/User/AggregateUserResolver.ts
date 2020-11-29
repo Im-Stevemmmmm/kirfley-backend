@@ -1,9 +1,9 @@
-import { GraphQLResolveInfo } from 'graphql';
-import graphqlFields from 'graphql-fields';
-import * as TypeGraphQL from 'type-graphql';
-import { User } from '../../../models/User';
-import { AggregateUser } from '../../outputs/AggregateUser';
-import { AggregateUserArgs } from './args/AggregateUserArgs';
+import { GraphQLResolveInfo } from "graphql";
+import graphqlFields from "graphql-fields";
+import * as TypeGraphQL from "type-graphql";
+import { User } from "../../../models/User";
+import { AggregateUser } from "../../outputs/AggregateUser";
+import { AggregateUserArgs } from "./args/AggregateUserArgs";
 
 @TypeGraphQL.Resolver(_of => User)
 export class AggregateUserResolver {
@@ -21,7 +21,7 @@ export class AggregateUserResolver {
         ): Record<string, any> {
             return Object.fromEntries(
                 Object.entries(fields)
-                    .filter(([key, value]) => !key.startsWith('_'))
+                    .filter(([key, value]) => !key.startsWith("_"))
                     .map<[string, any]>(([key, value]) => {
                         if (Object.keys(value).length === 0) {
                             return [key, true];

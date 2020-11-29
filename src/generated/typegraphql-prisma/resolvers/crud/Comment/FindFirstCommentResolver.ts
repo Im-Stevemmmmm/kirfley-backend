@@ -1,6 +1,6 @@
-import * as TypeGraphQL from 'type-graphql';
-import { Comment } from '../../../models/Comment';
-import { FindFirstCommentArgs } from './args/FindFirstCommentArgs';
+import * as TypeGraphQL from "type-graphql";
+import { Comment } from "../../../models/Comment";
+import { FindFirstCommentArgs } from "./args/FindFirstCommentArgs";
 
 @TypeGraphQL.Resolver(_of => Comment)
 export class FindFirstCommentResolver {

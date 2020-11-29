@@ -1,6 +1,6 @@
-import * as TypeGraphQL from 'type-graphql';
-import { CommentUpdateInput } from '../../../inputs/CommentUpdateInput';
-import { CommentWhereUniqueInput } from '../../../inputs/CommentWhereUniqueInput';
+import * as TypeGraphQL from "type-graphql";
+import { CommentUpdateInput } from "../../../inputs/CommentUpdateInput";
+import { CommentWhereUniqueInput } from "../../../inputs/CommentWhereUniqueInput";
 
 @TypeGraphQL.ArgsType()
 export class UpdateCommentArgs {

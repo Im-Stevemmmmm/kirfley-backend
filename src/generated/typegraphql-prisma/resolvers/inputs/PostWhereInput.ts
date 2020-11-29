@@ -1,8 +1,8 @@
-import * as TypeGraphQL from 'type-graphql';
-import { CommentListRelationFilter } from '../inputs/CommentListRelationFilter';
-import { IntFilter } from '../inputs/IntFilter';
-import { StringFilter } from '../inputs/StringFilter';
-import { UserRelationFilter } from '../inputs/UserRelationFilter';
+import * as TypeGraphQL from "type-graphql";
+import { CommentListRelationFilter } from "../inputs/CommentListRelationFilter";
+import { IntFilter } from "../inputs/IntFilter";
+import { StringFilter } from "../inputs/StringFilter";
+import { UserRelationFilter } from "../inputs/UserRelationFilter";
 
 @TypeGraphQL.InputType({
     isAbstract: true,

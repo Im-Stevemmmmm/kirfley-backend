@@ -1,12 +1,12 @@
-import * as TypeGraphQL from 'type-graphql';
+import * as TypeGraphQL from "type-graphql";
 
 export enum UserDistinctFieldEnum {
-    id = 'id',
-    username = 'username',
-    email = 'email',
-    password = 'password',
+    id = "id",
+    username = "username",
+    email = "email",
+    password = "password",
 }
 TypeGraphQL.registerEnumType(UserDistinctFieldEnum, {
-    name: 'UserDistinctFieldEnum',
+    name: "UserDistinctFieldEnum",
     description: undefined,
 });

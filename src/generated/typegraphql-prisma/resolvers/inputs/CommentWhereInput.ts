@@ -1,7 +1,7 @@
-import * as TypeGraphQL from 'type-graphql';
-import { IntFilter } from '../inputs/IntFilter';
-import { PostRelationFilter } from '../inputs/PostRelationFilter';
-import { StringFilter } from '../inputs/StringFilter';
+import * as TypeGraphQL from "type-graphql";
+import { IntFilter } from "../inputs/IntFilter";
+import { PostRelationFilter } from "../inputs/PostRelationFilter";
+import { StringFilter } from "../inputs/StringFilter";
 
 @TypeGraphQL.InputType({
     isAbstract: true,

@@ -1,5 +1,5 @@
-import * as TypeGraphQL from 'type-graphql';
-import { NestedIntFilter } from '../inputs/NestedIntFilter';
+import * as TypeGraphQL from "type-graphql";
+import { NestedIntFilter } from "../inputs/NestedIntFilter";
 
 @TypeGraphQL.InputType({
     isAbstract: true,
