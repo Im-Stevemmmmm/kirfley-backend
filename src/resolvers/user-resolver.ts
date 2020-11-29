@@ -89,16 +89,19 @@ export default class UserResolver {
       };
 
     const saltedHash = await argon2.hash(userInput.password!);
-    req.session.userId = user!.id;
+
+    const newUser = await prisma.user.create({
+      data: {
+        username: userInput.username!,
+        email: userInput.email!,
+        password: saltedHash,
+      },
+    });
+
+    req.session.userId = newUser!.id;
 
     return {
-      user: await prisma.user.create({
-        data: {
-          username: userInput.username!,
-          email: userInput.email!,
-          password: saltedHash,
-        },
-      }),
+      user: newUser,
       successful: true,
     };
   }
