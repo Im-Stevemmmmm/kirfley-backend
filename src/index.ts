@@ -8,7 +8,9 @@ import Redis from "ioredis";
 import path from "path";
 import "reflect-metadata";
 import { buildSchema } from "type-graphql";
-import { cookieName, production } from "./constants";
+import { COOKIE_NAME, PRODUCTION } from "./constants";
+import { InputField } from "./graphql/user/user-params";
+import { registerEnums } from "./utils/register-enums";
 
 const prisma = new PrismaClient();
 
@@ -26,7 +28,7 @@ const main = async () => {
             credentials: true,
         }),
         session({
-            name: cookieName,
+            name: COOKIE_NAME,
             store: new RedisStore({
                 client: redis,
                 disableTouch: true,
@@ -35,7 +37,7 @@ const main = async () => {
                 maxAge: 157680000000,
                 httpOnly: true,
                 sameSite: "lax",
-                secure: production,
+                secure: PRODUCTION,
                 domain: undefined,
             },
             saveUninitialized: false,
@@ -44,14 +46,13 @@ const main = async () => {
         })
     );
 
+    registerEnums([{ enum: InputField, name: "InputField" }]);
+
     const apolloServer = new ApolloServer({
         schema: await buildSchema({
             resolvers: [
-                path.join(__dirname, "./resolvers/**/*.{ts,js}"),
-                path.join(
-                    __dirname,
-                    "./generated/typegraphql-prisma/*.{ts,js}"
-                ),
+                path.join(__dirname, "graphql/**/*-resolvers.{ts,js}"),
+                path.join(__dirname, "generated/type-graphql/index.{ts,js}"),
             ],
             validate: false,
         }),
@@ -64,10 +65,10 @@ const main = async () => {
 
     apolloServer.applyMiddleware({ app, cors: false });
 
-    const port = process.env.PORT;
-    app.listen(port, () => {
-        console.log(`server started on localhost:${port}`);
-    });
+    const port = process.env.PORT || 4000;
+    app.listen(port, () =>
+        console.log(`server started on http://localhost:${port}/graphql`)
+    );
 };
 
 main()
