@@ -1,6 +1,6 @@
 import argon2 from "argon2";
 import { Arg, Args, Ctx, Mutation, Query, Resolver } from "type-graphql";
-import { COOKIE_NAME } from "../../constants";
+import { cookieName } from "../../constants";
 import { ResolverContext } from "../../resolver-context";
 import { AuthResponse, User } from "./user-model";
 import {
@@ -105,9 +105,9 @@ export class UserResolver {
 
     @Mutation(() => Boolean!)
     async logout(@Ctx() { req, res }: ResolverContext): Promise<Boolean> {
-        return new Promise(resolve =>
-            req.session.destroy(error => {
-                res.clearCookie(COOKIE_NAME);
+        return new Promise((resolve) =>
+            req.session.destroy((error) => {
+                res.clearCookie(cookieName);
 
                 if (error) {
                     console.log(error);
