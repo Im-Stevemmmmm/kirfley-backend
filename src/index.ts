@@ -8,7 +8,7 @@ import Redis from "ioredis";
 import path from "path";
 import "reflect-metadata";
 import { buildSchema } from "type-graphql";
-import { COOKIE_NAME, PRODUCTION } from "./constants";
+import { cookieName, production } from "./constants";
 import { InputField } from "./graphql/user/user-params";
 import { registerEnums } from "./utils/register-enums";
 
@@ -28,7 +28,7 @@ const main = async () => {
             credentials: true,
         }),
         session({
-            name: COOKIE_NAME,
+            name: cookieName,
             store: new RedisStore({
                 client: redis,
                 disableTouch: true,
@@ -37,7 +37,7 @@ const main = async () => {
                 maxAge: 157680000000,
                 httpOnly: true,
                 sameSite: "lax",
-                secure: PRODUCTION,
+                secure: production,
                 domain: undefined,
             },
             saveUninitialized: false,
@@ -72,7 +72,7 @@ const main = async () => {
 };
 
 main()
-    .catch(err => console.log(err))
+    .catch((err) => console.log(err))
     .finally(async () => {
         await prisma.$disconnect();
     });
