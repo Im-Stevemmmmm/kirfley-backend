@@ -5,6 +5,8 @@ ENV PORT 4000
 
 WORKDIR /usr/src/app
 
+RUN yarn global add pm2 --silent
+
 COPY ./package.json ./
 COPY ./yarn.lock ./
 
@@ -14,5 +16,6 @@ COPY . /usr/src/app
 
 RUN yarn build
 
-EXPOSE 4000 
-CMD ["yarn", "start"]
+EXPOSE 4000
+
+CMD ["pm2-runtime", "start", "yarn", "--interpreter", "bash", "--name", "web server", "--", "start"]
