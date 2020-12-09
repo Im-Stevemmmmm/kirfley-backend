@@ -25,7 +25,7 @@ export class UserResolver {
     async checkFieldAvailability(
         @Args() { field, value }: CheckFieldAvailabilityArgs,
         @Ctx() { prisma }: ResolverContext
-    ): Promise<boolean> {
+    ) {
         const user = await prisma.user.findUnique({
             where: { [field]: value },
         });
@@ -38,7 +38,7 @@ export class UserResolver {
         @Arg("options")
         { year, month, day, username, email, password }: RegisterUserInput,
         @Ctx() { req, prisma }: ResolverContext
-    ): Promise<AuthResponse> {
+    ) {
         const user = await prisma.user.findUnique({
             where: { email },
         });
@@ -72,7 +72,7 @@ export class UserResolver {
     async login(
         @Args() { usernameOrEmail, password }: LoginArgs,
         @Ctx() { req, prisma }: ResolverContext
-    ): Promise<AuthResponse> {
+    ) {
         const user = await prisma.user.findUnique({
             where: usernameOrEmail.includes("@")
                 ? { email: usernameOrEmail }
@@ -104,7 +104,7 @@ export class UserResolver {
     }
 
     @Mutation(() => Boolean!)
-    async logout(@Ctx() { req, res }: ResolverContext): Promise<Boolean> {
+    async logout(@Ctx() { req, res }: ResolverContext) {
         return new Promise((resolve) =>
             req.session.destroy((error) => {
                 res.clearCookie(cookieName);
