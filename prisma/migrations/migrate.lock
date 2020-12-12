@@ -1,6 +1,0 @@
-# Prisma Migrate lockfile v1
-
-20201204005047
-20201204005239-added-date-of-birth-field-to-user-and-user-to-comment
-20201204011019-changed-post-primary-key-to-uuidv4
-20201204022311-changed-post-id-to-autoincrement-and-added-uuidv4-as-a-column
