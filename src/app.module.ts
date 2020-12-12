@@ -11,6 +11,7 @@ import { AppContext } from "./utils/app-context";
                 req,
                 res,
             }),
+            cors: false,
         }),
         UsersModule,
     ],

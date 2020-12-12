@@ -1,5 +1,6 @@
 import { NestFactory } from "@nestjs/core";
 import * as connectRedis from "connect-redis";
+import * as cors from "cors";
 import * as session from "express-session";
 import Redis from "ioredis";
 import { AppModule } from "./app.module";
@@ -14,6 +15,7 @@ const main = async () => {
     const redis = new Redis(process.env.REDIS_URL);
 
     app.use(
+        cors({ origin: process.env.CORS_ORIGIN, credentials: true }),
         session({
             name: cookieName,
             store: new RedisStore({
