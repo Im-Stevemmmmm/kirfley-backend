@@ -35,7 +35,7 @@ export class UsersResolver {
     @Mutation(() => AuthResponse)
     async registerUser(
         @Args("data")
-        { year, month, day, username, email, password }: RegisterUserDto,
+        { username, email, password }: RegisterUserDto,
         @Context() { req }: AppContext
     ) {
         const user = await this.usersService.findOne({
@@ -52,7 +52,6 @@ export class UsersResolver {
             };
 
         const newUser = await this.usersService.create({
-            dateOfBirth: new Date(year, month, day),
             username,
             email,
             password: await argon.hash(password),
