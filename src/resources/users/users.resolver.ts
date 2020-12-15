@@ -73,8 +73,6 @@ export class UsersResolver {
 
         const user = await this.usersService.findOne(where);
 
-        console.log(req.session === undefined);
-
         if (!user)
             return {
                 successful: false,
