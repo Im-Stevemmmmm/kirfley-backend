@@ -3,9 +3,9 @@ import { InputField } from "./input-field";
 
 @ArgsType()
 export class CheckFieldAvailabilityArgs {
-    @Field(() => InputField)
-    field: InputField;
+  @Field(() => InputField)
+  field: InputField;
 
-    @Field()
-    value: string;
+  @Field()
+  value: string;
 }

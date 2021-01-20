@@ -3,21 +3,21 @@ import { User } from "../user.model";
 
 @ObjectType()
 class AuthError {
-    @Field()
-    field: string;
+  @Field()
+  field: string;
 
-    @Field()
-    message: string;
+  @Field()
+  message: string;
 }
 
 @ObjectType()
 export class AuthResponse {
-    @Field()
-    user?: User;
+  @Field()
+  user?: User;
 
-    @Field()
-    successful: boolean;
+  @Field()
+  successful: boolean;
 
-    @Field({ nullable: true })
-    error?: AuthError;
+  @Field({ nullable: true })
+  error?: AuthError;
 }
