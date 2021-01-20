@@ -1,7 +1,8 @@
 import { NestFactory } from "@nestjs/core";
-import * as connectRedis from "connect-redis";
-import * as cors from "cors";
-import * as session from "express-session";
+import connectRedis from "connect-redis";
+import cors from "cors";
+import "dotenv/config";
+import session from "express-session";
 import Redis from "ioredis";
 import { AppModule } from "./app.module";
 import { cookieName, production } from "./constants";
