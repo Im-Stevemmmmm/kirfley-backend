@@ -1,7 +1,7 @@
 import { Args, Context, Mutation, Query, Resolver } from "@nestjs/graphql";
 import * as argon from "argon2";
 import { cookieName } from "src/constants";
-import { AppContext } from "src/utils/app-context";
+import { ServerContext } from "src/utils/app-context";
 import { LoginDto } from "./dtos/login.dto";
 import { RegisterUserDto } from "./dtos/register-user.dto";
 import { CheckFieldAvailabilityArgs } from "./inputs/check-field-availability";
@@ -15,12 +15,12 @@ export class UsersResolver {
   constructor(private readonly usersService: UsersService) {}
 
   @Query(() => User, { nullable: true })
-  async me(@Context() { req }: AppContext) {
+  async me(@Context() { req }: ServerContext) {
     const userId = req.session.userId;
 
     if (!userId) return null;
 
-    return await this.usersService.findUnique({ id: userId });
+    return await this.usersService.findUnique(userId);
   }
 
   @Query(() => Boolean)
@@ -36,7 +36,7 @@ export class UsersResolver {
   async registerUser(
     @Args("data")
     { username, email, password }: RegisterUserDto,
-    @Context() { req }: AppContext
+    @Context() { req }: ServerContext
   ) {
     const user = await this.usersService.findOne({
       email,
@@ -57,7 +57,7 @@ export class UsersResolver {
       password: await argon.hash(password),
     });
 
-    req.session.userId = newUser.id;
+    req.session.userId = newUser._id;
 
     return { user: newUser, successful: true };
   }
@@ -65,7 +65,7 @@ export class UsersResolver {
   @Mutation(() => AuthResponse)
   async login(
     @Args("data") { usernameOrEmail, password }: LoginDto,
-    @Context() { req }: AppContext
+    @Context() { req }: ServerContext
   ) {
     const where = usernameOrEmail.includes("@")
       ? { email: usernameOrEmail }
@@ -84,34 +84,28 @@ export class UsersResolver {
 
     const isAuthenticated = await argon.verify(user.password, password);
 
-    req.session.userId = user.id;
+    req.session.userId = user._id;
 
     return {
       successful: isAuthenticated,
-      error: isAuthenticated
-        ? undefined
-        : {
-            field: InputField.PASSWORD,
-            message: "Incorrect password.",
-          },
+      error: !isAuthenticated && {
+        field: InputField.PASSWORD,
+        message: "Incorrect password.",
+      },
     };
   }
 
   @Mutation(() => Boolean)
-  async logout(@Context() { req, res }: AppContext) {
+  async logout(@Context() { req, res }: ServerContext) {
     return new Promise(resolve =>
       req.session.destroy(err => {
         res.clearCookie(cookieName);
 
         if (err) {
           console.log(err);
-
-          resolve(false);
-
-          return;
         }
 
-        resolve(true);
+        resolve(err);
       })
     );
   }
