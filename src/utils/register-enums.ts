@@ -7,7 +7,7 @@ interface EnumOptions {
 }
 
 export const registerGQLEnums = (enumOptions: EnumOptions[]) =>
-  enumOptions.forEach((enumOption, _) =>
+  enumOptions.forEach(enumOption =>
     registerEnumType(enumOption.enum, {
       name: enumOption.name,
       description: enumOption.description,
