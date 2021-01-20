@@ -1,7 +1,7 @@
 import { Args, Context, Mutation, Query, Resolver } from "@nestjs/graphql";
 import * as argon from "argon2";
 import { cookieName } from "src/constants";
-import { ServerContext } from "src/utils/app-context";
+import { ServerContext } from "src/utils/server-context";
 import { LoginDto } from "./dtos/login.dto";
 import { RegisterUserDto } from "./dtos/register-user.dto";
 import { CheckFieldAvailabilityArgs } from "./inputs/check-field-availability";
